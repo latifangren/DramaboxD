@@ -1,0 +1,137 @@
+{
+ "search": {
+  "code": 200,
+  "message": "success",
+  "data": {
+   "page_info": {
+    "next": "offset=20&page_size=20",
+    "has_more": true
+   },
+   "items": [
+    {
+     "id": "xuyr3DtXPt",
+     "name": "Passionate Love",
+     "desc": "Emily Parker reunites with James Murphy, the heir she secretly loved. A game brings them closer, but his love games and ex entangle them. When he defends her, will their youthful love prevail?",
+     "series_tag": [
+      "Romance",
+      "First Love",
+      "Love Triangle",
+      "Friends to Lovers",
+      "Reunion",
+      "Campus Romance",
+      "College Student",
+      "Rich",
+      "Contemporary",
+      "Female",
+      "Young Adult",
+      "Sweet Romance",
+      "Romantic"
+     ],
+     "content_tags": [
+      "Secret {{Love}}",
+      "First {{Love}}",
+      "Campus"
+     ],
+     "cover": "https://static-v1.mydramawave.com/vt/prod/cover/1e35c139-e49b-4453-b786-f83574eed4ec.jpg?image_process=quality,85/resize,w_600/format,webp",
+     "episode_count": 81,
+     "lang": "",
+     "pay_mode": "IAA",
+     "free": true
+    },
+    {
+     "id": "qb1gnZd81h",
+     "name": "Deadly Plunder The Mad Tycoon's Caged Bird",
+     "desc": "Talented architect Liam flees tycoon Edward after a clash, but three years later Edward finds and coerces him into becoming his captive lover to save his father. Manipulated by Charles, Liam discovers Edward\u2019s sacrifice, reverses his testimony, defeats Charles, and rebuilds true love with Edward.",
+     "content_tags": [
+      "Enemies to Lovers",
+      "Identity Twist",
+      "Sacrificing for Love"
+     ],
+     "cover": "https://static-v1.mydramawave.com/vt/openplatform/cover/dc0f9795-1491-408b-b262-b5d260e430a0.png?image_process=quality,85/resize,w_600/format,webp",
+     "episode_count": 31,
+     "lang": "",
+     "pay_mode": "IAA",
+     "free": true
+    }
+   ]
+  }
+ },
+ "detail": {
+  "code": 200,
+  "message": "success",
+  "data": {
+   "info": {
+    "id": "xuyr3DtXPt",
+    "name": "Passionate Love",
+    "desc": "Emily Parker reunites with James Murphy, the heir she secretly loved. A game brings them closer, but his love games and ex entangle them. When he defends her, will their youthful love prevail?",
+    "cover": "https://static-v1.mydramawave.com/vt/prod/cover/1e35c139-e49b-4453-b786-f83574eed4ec.jpg?image_process=quality,85/resize,w_600/format,webp",
+    "episode_count": 81,
+    "content_tags": [
+     "Secret Crush",
+     "Friends to Lovers"
+    ],
+    "pay_mode": "IAA",
+    "free": true,
+    "free_start": 1734883200,
+    "free_end": 2050675200,
+    "original_audio_language": "zh-CN",
+    "episode_list": [
+     {
+      "id": "Tl15J7Wl0b",
+      "name": "Passionate Love",
+      "cover": "https://static-v1.mydramawave.com/vt/video/cover/episode/4379017bbc6f480282ca4d1010300cdd.jpg?image_process=quality,85/resize,w_600/format,webp",
+      "m3u8_url": "",
+      "duration": 206,
+      "episode_price": 60
+     },
+     {
+      "id": "xUBE7vw27w",
+      "name": "Passionate Love",
+      "cover": "https://static-v1.mydramawave.com/vt/video/cover/episode/db518d707658449689588dc3c4b019ef.jpg?image_process=quality,85/resize,w_600/format,webp",
+      "m3u8_url": "",
+      "duration": 138,
+      "episode_price": 60
+     },
+     {
+      "id": "1QMY7j0oVB",
+      "name": "Passionate Love",
+      "cover": "https://static-v1.mydramawave.com/vt/video/cover/episode/4e6a666803544784889c711af298528f.jpg?image_process=quality,85/resize,w_600/format,webp",
+      "m3u8_url": "",
+      "duration": 134,
+      "episode_price": 60
+     }
+    ],
+    "episode": {
+     "id": "Tl15J7Wl0b",
+     "index": 1,
+     "duration": 206,
+     "unlock": true,
+     "m3u8_url": "",
+     "video_url": "",
+     "external_audio_h264_m3u8": "https://video-v6.mydramawave.com/vt/2a3f5811-836f-4a1d-aa28-387b842f59e9/h264-edd627d4-e81f-4deb-b154-ab06a487e74a-v4.m3u8",
+     "external_audio_h265_m3u8": "https://video-v6.mydramawave.com/vt/2a3f5811-836f-4a1d-aa28-387b842f59e9/h265-edd627d4-e81f-4deb-b154-ab06a487e74a-v4.m3u8",
+     "cover": "https://static-v1.mydramawave.com/vt/video/cover/episode/4379017bbc6f480282ca4d1010300cdd.jpg?image_process=quality,85/resize,w_600/format,webp"
+    }
+   }
+  }
+ },
+ "push": {
+  "code": 200,
+  "message": "success",
+  "data": {
+   "info": {
+    "id": "xuyr3DtXPt",
+    "episode": {
+     "id": "HMtH4EKdVa",
+     "index": 5,
+     "unlock": true,
+     "m3u8_url": "",
+     "video_url": "",
+     "external_audio_h264_m3u8": "https://video-v81.mydramawave.com/vt/7d73f903-a6d6-4107-92a2-bc9e1b0e60c5/h264-48a7f525-e63f-4bbd-a999-711ac4f76e3a-v4.m3u8",
+     "external_audio_h265_m3u8": "https://video-v6.mydramawave.com/vt/7d73f903-a6d6-4107-92a2-bc9e1b0e60c5/h265-48a7f525-e63f-4bbd-a999-711ac4f76e3a-v4.m3u8",
+     "cover": "https://static-v1.mydramawave.com/vt/video/cover/episode/6a548b3dada44a6e9eeb2376548da6e2.jpg?image_process=quality,85/resize,w_600/format,webp"
+    }
+   }
+  }
+ }
+}

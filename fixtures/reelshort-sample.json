@@ -1,0 +1,120 @@
+{
+ "searchItems": [
+  {
+   "book_id": "6a469b12d3f5c65f7f095b8a",
+   "t_book_id": "200000000000003683",
+   "book_title": "You've Been Replaced, First Love",
+   "book_pic": "https://v-img.crazymaplestudios.com/v-images/book_cover_batch/200000000000003683/12e72eca-f143-4bb0-b561-5044ab137be8.jpg",
+   "chapter_count": 73,
+   "theme": [
+    "Young Adult"
+   ],
+   "read_count": 201575304
+  },
+  {
+   "book_id": "6acf2dd507d1b73b60088e76",
+   "t_book_id": "204200150000006475",
+   "book_title": "The Sea God's Disguise: Fishing for Love",
+   "book_pic": "https://v-img.crazymaplestudios.com/v-images/book_cover_batch/204200150000006475/4f40b4ea-67c2-4b00-8cf9-c8c04b769c77.jpg",
+   "chapter_count": 40,
+   "theme": [
+    "Divorce"
+   ],
+   "read_count": 5976373
+  },
+  {
+   "book_id": "692cfefa8b323ebe41024067",
+   "t_book_id": "209000000000002429",
+   "book_title": "Love on the Edge",
+   "book_pic": "https://v-mps.crazymaplestudios.com/images/8151dae0-d5a9-11f0-84ad-6b5693b490dc.jpg",
+   "chapter_count": 65,
+   "theme": [
+    "Love-hate"
+   ],
+   "read_count": 2157388
+  }
+ ],
+ "book": {
+  "book_id": "6a5191d8fa9f9f7a09081789",
+  "book_title": "The Great and Powerful Genie",
+  "book_pic": "https://v-img.crazymaplestudios.com/v-images/book_cover_batch/204201150000005664/18c48255-bd2b-4626-bc89-3481440297fd.jpg",
+  "special_desc": "<p style=\"margin-bottom: 1.2em;\">Elijah Baran is a genie in a magic lamp who spent thousands of years granting three wishes to one generation after another in The Great and Powerful Genie. All that ti",
+  "online_base": [
+   {
+    "chapter_id": "1gv8oeozxn",
+    "serial_number": 1,
+    "video_pic": "https://v-mps.crazymaplestudios.com/Snapshots/b03b7a7d9207cdb9.jpg",
+    "status": 1
+   },
+   {
+    "chapter_id": "ti07nzrvjv",
+    "serial_number": 2,
+    "video_pic": "https://v-mps.crazymaplestudios.com/Snapshots/1cd69c22c9ed90b3.jpg",
+    "status": 1
+   },
+   {
+    "chapter_id": "hr8hiszkwh",
+    "serial_number": 3,
+    "video_pic": "https://v-mps.crazymaplestudios.com/Snapshots/ee9344e61e83d058.jpg",
+    "status": 1
+   }
+  ]
+ },
+ "chapterInfo": {
+  "video_url": "https://v-mps.crazymaplestudios.com/vod-112094/603ab20b7f3571f1a92bf7e6c5580102/d83fabdc10ed4ede857c54de885597ad-7007c458f3fe7a04029046eee5d3920d-sd.m3u8",
+  "duration": 283,
+  "serial_number": 1
+ },
+ "hallLists": [
+  {
+   "type": 5002,
+   "books": [
+    {
+     "book_id": "6ab397e13282a14d03058cf7",
+     "book_title": "The Alpha's Forbidden Bunny",
+     "book_pic": "https://v-img.crazymaplestudios.com/v-images/book_cover_batch/204200150000007655/56a1edb3-66b9-43f6-8ef4-8e005dc49d7e.jpg",
+     "chapter_count": 38,
+     "theme": [
+      "Playing Dumb"
+     ],
+     "read_count": 1841334
+    },
+    {
+     "book_id": "6a9a2a1759516005be053227",
+     "book_title": "Spoiled by Four Sea Monster Husbands",
+     "book_pic": "https://v-img.crazymaplestudios.com/v-images/book_cover_batch/204200150000006008/bd72681c-aa81-497d-80d5-687cd12f61cd.jpg",
+     "chapter_count": 42,
+     "theme": [
+      "Playing Dumb"
+     ],
+     "read_count": 1381725
+    }
+   ]
+  },
+  {
+   "type": 5002,
+   "books": [
+    {
+     "book_id": "6858fbb2ba1325d77905c8c6",
+     "book_title": "Cooking My Way Back to Love",
+     "book_pic": "https://v-img.crazymaplestudios.com/v-images/book_cover_batch/200000000000000290/3a98fe44-e15b-4cc1-aee6-ec3c1aeb7ad0.jpg",
+     "chapter_count": 86,
+     "theme": [
+      "Rags to Riches"
+     ],
+     "read_count": 132456658
+    },
+    {
+     "book_id": "6aac64819e2d618b790f0dd8",
+     "book_title": "Dream On",
+     "book_pic": "https://v-img.crazymaplestudios.com/v-images/book_cover_batch/200000000000003284/771b3ea6-78f6-46a8-a307-7466eadde6de.jpg",
+     "chapter_count": 113,
+     "theme": [
+      "Playing Dumb"
+     ],
+     "read_count": 12473476
+    }
+   ]
+  }
+ ]
+}

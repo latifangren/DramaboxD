@@ -1,0 +1,23 @@
+# Dependensi & hasil build
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Hasil scrape (dibuat ulang oleh CLI)
+output/
+
+# Rahasia lokal
+.env
+.env.*
+!.env.example
+
+# APK & artefak reverse engineering (besar; tidak masuk repo)
+apk/
+*.apk
+
+# Log & sampah OS/editor
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

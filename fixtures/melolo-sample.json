@@ -1,0 +1,72 @@
+{
+ "search": {
+  "code": 0,
+  "message": "success",
+  "data": {
+   "has_more": true,
+   "next_offset": 10,
+   "search_data": [
+    {
+     "books": [
+      {
+       "book_id": "7689370093171526661",
+       "book_name": "Learning To Love 2",
+       "author": "qiunirangwoguoshen",
+       "abstract": "A cold-hearted man and a straightforward woman enter a new stage of their relationship. Through arguments, misunderstandings, and heartfelt moments, they learn to understand each other. Facing family troubles and painful memories, they grow beyond romance and discover the true meaning of trust and responsibility.",
+       "thumb_url": "https://p19-novel-sg.ibyteimg.com/img/novel-images-apsoutheast/047245ef2e98e54dd618d7cbe5fb8938~tplv-resize:570:810.jpg",
+       "serial_count": "86",
+       "language": "en",
+       "genre": "205"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "directory": {
+  "code": 0,
+  "message": "success",
+  "data": {
+   "book_info": {
+    "book_id": "7689370093171526661",
+    "book_name": "Learning To Love 2",
+    "author": "qiunirangwoguoshen",
+    "abstract": "A cold-hearted man and a straightforward woman enter a new stage of their relationship. Through arguments, misunderstandings, and heartfelt moments, they learn to understand each other. Facing family troubles and painful memories, they grow beyond romance and discover the true meaning of trust and responsibility.",
+    "thumb_url": "https://p19-novel-sg.ibyteimg.com/img/novel-images-apsoutheast/047245ef2e98e54dd618d7cbe5fb8938~tplv-resize:570:810.jpg",
+    "serial_count": "86",
+    "language": "en",
+    "genre": "205"
+   },
+   "item_list": [
+    "7689370562480573445",
+    "7689370562484784133",
+    "7689370562488978437"
+   ],
+   "item_paid_info_list": [
+    {
+     "is_paid": false,
+     "item_id": 7689370562480573445
+    },
+    {
+     "is_paid": false,
+     "item_id": 7689370562484784133
+    },
+    {
+     "is_paid": false,
+     "item_id": 7689370562488978437
+    }
+   ],
+   "paid_item_id_set": []
+  }
+ },
+ "videoModel": {
+  "code": 0,
+  "message": "success",
+  "data": {
+   "expire_time": 1792661153,
+   "video_width": 720,
+   "video_height": 1280,
+   "video_model": "{\"video_duration\": 83.7, \"poster_url\": \"https://p3-novel-sg.ibyteimg.com/img/poster-example.jpg\", \"video_list\": {\"video_2\": {\"definition\": \"360p\", \"vheight\": 360, \"main_url\": \"aHR0cHM6Ly92MTYtbWwubWVsb2xvc3RhdGljLmNvbS9leGFtcGxlLzM2MHAubXA0\"}, \"video_5\": {\"definition\": \"720p\", \"vheight\": 720, \"main_url\": \"aHR0cHM6Ly92MTYtbWwubWVsb2xvc3RhdGljLmNvbS9leGFtcGxlLzcyMHAubXA0\"}}}"
+  }
+ }
+}

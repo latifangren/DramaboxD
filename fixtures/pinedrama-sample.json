@@ -1,0 +1,122 @@
+{
+ "seriesJsonLd": {
+  "@context": "https://schema.org",
+  "@type": "TVEpisode",
+  "name": "My Husband Murdered Me",
+  "description": "My Husband Murdered Me is a chilling tale of betrayal and cold-blooded revenge that begins when a trusted spouse chooses a college girl over his own family. After surviving a lethal strike intended to bury her alongside her innocent daughter, the protagonist is reborn from the wreckage of her former life. This trending short drama follows her transformation as she acquires a new face and an unexpected ally with his own debt to settle. Their alliance is built on collateral damage and the shared goal of dismantling a corrupt power hierarchy. As she returns to the urban elite, she is no longer a liability but a calculated force of destruction. This must-watch drama explores the high price of social debt and the inevitable collapse of those who trade blood for status in this short series.",
+  "url": "https://pinedrama.com/dramas/my-husband-murdered-me",
+  "image": "https://v.pinedrama.com/b1265344voduse1318177724/ccd522bc5145403710666803246/7ayC79V627QA.webp",
+  "numberOfEpisodes": 50,
+  "genre": "Rebirth"
+ },
+ "episodeList": [
+  {
+   "can_play": true,
+   "episode_id": 1,
+   "seo_desc": null,
+   "seo_title": null
+  },
+  {
+   "can_play": true,
+   "episode_id": 2,
+   "seo_desc": null,
+   "seo_title": null
+  },
+  {
+   "can_play": true,
+   "episode_id": 3,
+   "seo_desc": null,
+   "seo_title": null
+  },
+  {
+   "can_play": true,
+   "episode_id": 4,
+   "seo_desc": null,
+   "seo_title": null
+  },
+  {
+   "can_play": true,
+   "episode_id": 5,
+   "seo_desc": null,
+   "seo_title": null
+  },
+  {
+   "can_play": true,
+   "episode_id": 6,
+   "seo_desc": null,
+   "seo_title": null
+  },
+  {
+   "can_play": true,
+   "episode_id": 7,
+   "seo_desc": null,
+   "seo_title": null
+  },
+  {
+   "can_play": true,
+   "episode_id": 8,
+   "seo_desc": null,
+   "seo_title": null
+  },
+  {
+   "can_play": true,
+   "episode_id": 9,
+   "seo_desc": null,
+   "seo_title": null
+  }
+ ],
+ "catalog": [
+  {
+   "slug": "my-husband-murdered-me",
+   "title": "My Husband Murdered Me",
+   "cover": "https://v.pinedrama.com/b1265344voduse1318177724/ccd522bc5145403710666803246/7ayC79V627QA.webp!15491.webp"
+  },
+  {
+   "slug": "return-of-the-fallen",
+   "title": "Return Of The Fallen",
+   "cover": "https://v.pinedrama.com/b1265344voduse1318177724/4ec1c7e25145403714148417990/mGugaAoJkTAA.webp!15491.webp"
+  },
+  {
+   "slug": "married-to-the-wheelchair-billionaire",
+   "title": "Married to the Wheelchair Billionaire",
+   "cover": "https://v.pinedrama.com/b1265344voduse1318177724/dab0fa605145403723715225577/YqBk4ohp4TgA.webp!15491.webp"
+  },
+  {
+   "slug": "back-to-1998-world-domination",
+   "title": "Back to 1998: World Domination",
+   "cover": "https://v.pinedrama.com/b1265344voduse1318177724/7e2cea415145403711553395438/KnLEshd6oOsA.webp!15491.webp"
+  },
+  {
+   "slug": "tides-of-betrayal-rise-of-a-fishing-empire",
+   "title": "Tides of Betrayal, Rise of a Fishing Empire",
+   "cover": "https://v.pinedrama.com/b1265344voduse1318177724/03fa07895001834818852521896/ixhrxiZ05vQA.webp!15491.webp"
+  },
+  {
+   "slug": "the-unloved-scientist",
+   "title": "The Unloved Scientist",
+   "cover": "https://v.pinedrama.com/b1265344voduse1318177724/4ec235755145403714148418211/Y4T72lOc2lEA.webp!15491.webp"
+  },
+  {
+   "slug": "awakened-no-more-chains",
+   "title": "Awakened: No More Chains",
+   "cover": "https://v.pinedrama.com/b1265344voduse1318177724/21c4e6565145403706122018187/00rdtQHN5U4A.webp!15491.webp"
+  },
+  {
+   "slug": "too-late-i-married-the-chairwoman",
+   "title": "Too Late, I Married The Chairwoman",
+   "cover": "https://v.pinedrama.com/b1265344voduse1318177724/61a89f255001834810297828563/GS8aSnvbtAMA.webp!15491.webp"
+  }
+ ],
+ "playUrl": {
+  "code": 200,
+  "data": {
+   "url": "https://v.pinedrama.com/654df5ecvodtransuse1318177724/e31c99285145403709528974163/v.f101303.mp4?sign=1792664194-example"
+  },
+  "msg": "success"
+ },
+ "playUrlLocked": {
+  "code": 500,
+  "data": [],
+  "msg": "Episode unavailable"
+ }
+}

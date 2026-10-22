@@ -1,0 +1,123 @@
+{
+ "searchPosts": [
+  {
+   "vid": 1,
+   "cat_id": 1,
+   "video_title": "Awaken Eps 01",
+   "video_url": "http://durian.whatbox.ca:28835/Hajar/Complete/Awaken/01.mp4",
+   "video_url_hd": "",
+   "video_url_eng": "",
+   "video_thumbnail": "https://i.mydramalist.com/4YOjZ_3m.jpg",
+   "category_name": "Awaken",
+   "category_image": "https://i.mydramalist.com/0ex5E_4c.jpg"
+  },
+  {
+   "vid": 2,
+   "cat_id": 1,
+   "video_title": "Awaken Eps 02",
+   "video_url": "http://durian.whatbox.ca:28835/Hajar/Complete/Awaken/02.mp4",
+   "video_url_hd": "",
+   "video_url_eng": "",
+   "video_thumbnail": "https://i.mydramalist.com/EZON0_3m.jpg",
+   "category_name": "Awaken",
+   "category_image": "https://i.mydramalist.com/0ex5E_4c.jpg"
+  },
+  {
+   "vid": 3,
+   "cat_id": 1,
+   "video_title": "Awaken Eps 03",
+   "video_url": "http://durian.whatbox.ca:28835/Hajar/Complete/Awaken/03.mp4",
+   "video_url_hd": "",
+   "video_url_eng": "",
+   "video_thumbnail": "https://i.mydramalist.com/Ry8xg_3m.jpg",
+   "category_name": "Awaken",
+   "category_image": "https://i.mydramalist.com/0ex5E_4c.jpg"
+  },
+  {
+   "vid": 4,
+   "cat_id": 1,
+   "video_title": "Awaken Eps 04",
+   "video_url": "http://durian.whatbox.ca:28835/Hajar/Complete/Awaken/04.mp4",
+   "video_url_hd": "",
+   "video_url_eng": "",
+   "video_thumbnail": "https://i.mydramalist.com/jeEOw_3m.jpg",
+   "category_name": "Awaken",
+   "category_image": "https://i.mydramalist.com/0ex5E_4c.jpg"
+  }
+ ],
+ "category": {
+  "cid": 3730,
+  "category_name": "Where The Mask Ends",
+  "category_image": "https://i.mydramalist.com/JjBNPp_4c.jpg",
+  "status_video": "OnGoing",
+  "rating": 8.3,
+  "year": 2026,
+  "genre": "Historical, Romance",
+  "desc_anime": "<p><strong>Alternative Titles</strong><br />\r\nNative Title: 嫁金钗<br />\r\nAlso Known As: Jia Jin Chai , Transfer Gold Hairpin , 嫁金釵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</p>\r\n\r\n<p><strong>Information</strong><br />\r\nTitle: Where the"
+ },
+ "categoryCountTotal": 15,
+ "categoryPosts": [
+  {
+   "vid": 57711,
+   "cat_id": 3730,
+   "video_title": "Where The Mask Ends Eps 01",
+   "video_url": "http://rambutan.whatbox.ca:28835/Mantap/WhereTheMaskEnds/01.mp4",
+   "video_url_hd": "",
+   "video_url_eng": "",
+   "video_thumbnail": "https://i.mydramalist.com/lB03Bb_3m.jpg",
+   "category_name": "Where The Mask Ends",
+   "category_image": "https://i.mydramalist.com/JjBNPp_4c.jpg"
+  },
+  {
+   "vid": 57712,
+   "cat_id": 3730,
+   "video_title": "Where The Mask Ends Eps 02",
+   "video_url": "http://rambutan.whatbox.ca:28835/Mantap/WhereTheMaskEnds/02.mp4",
+   "video_url_hd": "",
+   "video_url_eng": "",
+   "video_thumbnail": "https://i.mydramalist.com/JjBljm_3m.jpg",
+   "category_name": "Where The Mask Ends",
+   "category_image": "https://i.mydramalist.com/JjBNPp_4c.jpg"
+  },
+  {
+   "vid": 57713,
+   "cat_id": 3730,
+   "video_title": "Where The Mask Ends Eps 03",
+   "video_url": "http://rambutan.whatbox.ca:28835/Mantap/WhereTheMaskEnds/03.mp4",
+   "video_url_hd": "",
+   "video_url_eng": "",
+   "video_thumbnail": "https://i.mydramalist.com/7r3NrL_3m.jpg",
+   "category_name": "Where The Mask Ends",
+   "category_image": "https://i.mydramalist.com/JjBNPp_4c.jpg"
+  }
+ ],
+ "categories": [
+  {
+   "cid": 3740,
+   "category_name": "Small Town Remedy",
+   "category_image": "https://i.mydramalist.com/Pexgq3_4c.jpg",
+   "status_video": "OnGoing",
+   "rating": 8.5,
+   "year": 2026,
+   "genre": "Life, Drama, Medical"
+  },
+  {
+   "cid": 3739,
+   "category_name": "Midnight Diner Season 6",
+   "category_image": "https://i.mydramalist.com/8Q1bzA_4c.jpg",
+   "status_video": "OnGoing",
+   "rating": 8,
+   "year": 2026,
+   "genre": "Food, Life"
+  },
+  {
+   "cid": 3738,
+   "category_name": "Extraordinary Attorney Minami",
+   "category_image": "https://i.mydramalist.com/ONgm0y_4c.jpg",
+   "status_video": "OnGoing",
+   "rating": 8,
+   "year": 2026,
+   "genre": "Law, Romance, Drama"
+  }
+ ]
+}

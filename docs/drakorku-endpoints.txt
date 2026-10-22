@@ -1,0 +1,30 @@
+# DrakorKu 5.1.2 — ApiInterface (Retrofit, rests/ApiInterface.java)
+# Base: https://kampretloh.top/v3/  | Wajib: UA Dalvik app + Accept: application/vnd.yourapi.v1.full+json + Data-Agent: Your Videos Channel
+GETapi/get_category_genre
+GETapi/get_genre_index
+GETapi/get_cari_anime
+GETconfig/get_category_like_ranking.php
+GETconfig/get_category_rating.php
+GETapi/get_category_videos
+GETapi/get_informasi_pop_up
+GETapi/get_jadwal_detail
+GETapi/get_package_name
+GETapi/get_privacy_policy
+GETapi/get_pusat_bantuan
+GETapi/get_search_results
+GETads/settings
+GETapi/get_tv
+GETapi/get_user_token
+GETapi/get_post_detail
+GETapi/get_post_detail_category
+GETapi/get_post_detail_category_drakor
+GETapi/get_post_detail_next_provious
+GETapi/get_category_videos_detail
+GETapi/get_videos
+POSTconfig/save_category_rating.php
+
+# Non-Retrofit (Volley/langsung):
+GET register.php (token)
+POST config/backup_data.php
+POST config/restore_data.php
+GET req.php (request judul)
