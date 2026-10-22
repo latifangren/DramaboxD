@@ -36,6 +36,30 @@ export interface Episode {
   streamUrl?: string;
   /** true bila episode terkunci di upstream (stream biasanya kosong). */
   locked?: boolean;
+  /** Daftar subtitle bila disediakan upstream. */
+  subtitles?: SubtitleTrack[];
+}
+
+export interface SubtitleTrack {
+  lang: string;
+  label: string;
+  url: string;
+  isDefault?: boolean;
+}
+
+export interface PlatformInfo {
+  id: string;
+  name: string;
+  dramaCount: number;
+  status: "active" | "planned" | "coming_soon";
+  icon?: string;
+  description?: string;
+}
+
+export interface GlobalSearchResult {
+  provider: string;
+  results: SeriesSummary[];
+  error?: string;
 }
 
 /** Kontrak provider, mengikuti pola SekaiDrama: satu pola seragam per provider. */

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <title>DramaFlix — Streaming Drama Pendek</title>
+  <title>DramaboxD — Streaming Drama Pendek Vertikal</title>
   <link rel="stylesheet" href="/style.css">
   <!-- HLS.js for m3u8 streaming -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -13,100 +13,273 @@
   <!-- Header / Navbar -->
   <header class="navbar" id="navbar">
     <div class="nav-left">
-      <div class="logo">DRAMA<span>FLIX</span></div>
+      <a class="brand" id="brandBtn">
+        <div class="brand-logo">DRAMABOX<span>D</span></div>
+      </a>
       <nav class="nav-links">
-        <a href="#" class="active" onclick="location.reload()">Beranda</a>
-        <a href="#rows-container">Koleksi</a>
-      </nav>
+        <button class="nav-btn active" id="navHomeBtn" data-i18n="navHome">Beranda</button>
+        <button class="nav-btn" id="navPlatformsBtn" data-i18n="navPlatforms">Platform</button>
+        <button class="nav-btn" id="navGenresBtn" data-i18n="navGenres">Genre</button>
+        <button class="nav-btn" id="navMyListBtn" data-i18n="navMyList">Daftar Saya</button>
     </div>
     <div class="nav-right">
-      <div class="search-box">
-        <select id="providerSelect" class="provider-select" title="Pilih Provider">
-          <option value="reelshort">ReelShort</option>
-          <option value="freereels">FreeReels</option>
-          <option value="dramabox">DramaBox</option>
-          <option value="melolo">Melolo</option>
-          <option value="mock">Mock</option>
-        </select>
-        <input type="text" id="searchInput" placeholder="Cari judul drama..." autocomplete="off">
-        <button id="searchBtn" class="search-btn" title="Cari">🔍</button>
+      <div class="search-container">
+        <input 
+          type="text" 
+          class="search-input" 
+          id="searchInput" 
+          data-i18n-placeholder="searchPlaceholder" 
+          placeholder="Cari judul drama di semua platform..." 
+          autocomplete="off"
+        >
+        <button class="search-submit-btn" id="searchBtn" title="Cari">🔍</button>
+        <div class="search-suggest-dropdown" id="searchSuggestDropdown" style="display: none;"></div>
       </div>
-      <div class="lan-badge" id="lanBadge" title="Status Jaringan">LAN Ready</div>
+      <button class="lang-btn" id="langSwitchBtn">🇮🇩 ID</button>
+      <div class="lan-badge" id="lanBadge">LAN</div>
     </div>
   </header>
 
-  <!-- Hero Billboard -->
+  <!-- Hero Billboard (Hanya tampil di Beranda) -->
   <section class="billboard" id="billboard">
     <div class="billboard-backdrop" id="billboardBg"></div>
     <div class="billboard-vignette"></div>
     <div class="billboard-content">
-      <span class="provider-pill" id="billboardProvider">MELOLO</span>
-      <h1 class="billboard-title" id="billboardTitle">Memuat Drama...</h1>
-      <p class="billboard-desc" id="billboardDesc">Mencari drama terpopuler...</p>
+      <div class="billboard-provider-badge" id="billboardProvider">DRAMABOXD</div>
+      <h1 class="billboard-title" id="billboardTitle">Memuat Pilihan Utama...</h1>
+      <p class="billboard-desc" id="billboardDesc">Katalog drama pendek vertikal terbaik dari berbagai platform.</p>
       <div class="billboard-actions">
-        <button class="btn btn-primary" id="billboardPlayBtn">▶ Putar</button>
-        <button class="btn btn-secondary" id="billboardInfoBtn">ℹ Info Selengkapnya</button>
+        <button class="btn btn-primary" id="billboardPlayBtn">▶ <span data-i18n="heroPlay">Putar Sekarang</span></button>
+        <button class="btn btn-secondary" id="billboardInfoBtn">ℹ <span data-i18n="heroInfo">Lihat Detail</span></button>
       </div>
     </div>
   </section>
 
-  <!-- Rows / Sliders -->
-  <main class="main-content" id="rows-container">
-    <div class="loader" id="mainLoader">Memuat katalog drama...</div>
+  <!-- Main Content Views -->
+  <main class="main-content" id="mainContainer">
+    <!-- View 1: Home Catalog View -->
+    <div class="view-panel" id="view-home">
+      <!-- Genre Filter Bar (Chips Horisontal) -->
+      <div class="genre-filter-wrapper">
+        <div class="genre-filter-scroll" id="homeGenreFilterBar"></div>
+      </div>
+
+      <!-- Continue Watching Row (Dynamically populated from Store) -->
+      <section class="category-row" id="continueWatchingSection" style="display: none;">
+        <div class="row-header">
+          <h2 class="row-title" data-i18n="continueWatching">Lanjutkan Menonton</h2>
+        </div>
+        <div class="row-slider" id="continueWatchingSlider"></div>
+      </section>
+
+      <!-- Provider Rows Container -->
+      <div id="rows-container">
+        <div class="loader" data-i18n="loadingCatalog">Memuat katalog drama...</div>
+      </div>
+    </div>
+
+    <!-- View 2: Platforms View (Inspired by dramaflix.net/id/platforms) -->
+    <div class="view-panel" id="view-platforms" style="display: none;">
+      <section class="platforms-section">
+        <div class="platforms-header">
+          <h1 class="platforms-title" data-i18n="platformTitle">Direktori Platform</h1>
+          <p class="platforms-subtitle" data-i18n="platformSubtitle">Pilih platform drama pendek untuk melihat koleksi resminya.</p>
+          <div class="platforms-filter">
+            <button class="filter-chip active" data-filter="all" data-i18n="filterAll">Semua Platform</button>
+            <button class="filter-chip" data-filter="active" data-i18n="filterActive">Aktif (Dapat Diputar)</button>
+            <button class="filter-chip" data-filter="planned" data-i18n="filterComingSoon">Segera Hadir</button>
+          </div>
+        </div>
+        <div class="platforms-grid" id="platformsGrid"></div>
+      </section>
+    </div>
+
+    <!-- View 3: Search Results View -->
+    <div class="view-panel" id="view-search" style="display: none;">
+      <section class="category-row">
+        <div class="row-header">
+          <h2 class="row-title" id="searchResultTitle">Hasil Pencarian</h2>
+          <div class="sort-control">
+            <span class="sort-label" data-i18n="sortLabel">Urutkan:</span>
+            <select class="sort-select" id="searchSortSelect">
+              <option value="popular" data-i18n="sortPopular">🔥 Terpopuler</option>
+              <option value="episodes_desc" data-i18n="sortEpDesc">📈 Episode Terbanyak</option>
+              <option value="episodes_asc" data-i18n="sortEpAsc">📉 Episode Tersedikit</option>
+              <option value="az" data-i18n="sortAZ">🔤 Judul (A — Z)</option>
+              <option value="za" data-i18n="sortZA">🔠 Judul (Z — A)</option>
+            </select>
+          </div>
+        </div>
+        <div class="platforms-grid" id="searchResultsGrid"></div>
+      </section>
+    </div>
+
+    <!-- View 4: My Library View (Bookmarks & Watch History with Tabs and Filter) -->
+    <div class="view-panel" id="view-mylist" style="display: none;">
+      <section class="platforms-section">
+        <div class="library-header">
+          <div class="library-tabs">
+            <button class="lib-tab active" id="libTabBookmarks" data-tab="bookmarks" data-i18n="tabBookmarks">🔖 Favorit Saya</button>
+            <button class="lib-tab" id="libTabHistory" data-tab="history" data-i18n="tabHistory">🕒 Riwayat Nonton</button>
+          </div>
+
+          <div class="library-actions">
+            <select class="sort-select" id="libPlatformFilter">
+              <option value="all">Semua Platform</option>
+            </select>
+            <button class="btn-clear" id="libClearAllBtn">🗑️ <span data-i18n="clearAll">Bersihkan Semua</span></button>
+          </div>
+        </div>
+
+        <div class="platforms-grid" id="myListGrid" style="margin-top: 20px;"></div>
+      </section>
+    </div>
+
+    <!-- View 6: Dedicated Genres Directory View -->
+    <div class="view-panel" id="view-genres" style="display: none;">
+      <section class="platforms-section">
+        <div class="platforms-header">
+          <h1 class="platforms-title" data-i18n="genreTitle">Koleksi Genre</h1>
+          <p class="platforms-subtitle" data-i18n="genreSubtitle">Temukan drama pendek favoritmu berdasarkan alur dan tema cerita.</p>
+        </div>
+        <div class="genres-grid" id="genresGrid"></div>
+        <div id="genreDramasContainer" style="margin-top: 36px; display: none;">
+          <div class="row-header">
+            <h2 class="row-title" id="selectedGenreTitle">Daftar Drama</h2>
+            <div class="sort-control">
+              <span class="sort-label" data-i18n="sortLabel">Urutkan:</span>
+              <select class="sort-select" id="genreSortSelect">
+                <option value="popular" data-i18n="sortPopular">🔥 Terpopuler</option>
+                <option value="episodes_desc" data-i18n="sortEpDesc">📈 Episode Terbanyak</option>
+                <option value="episodes_asc" data-i18n="sortEpAsc">📉 Episode Tersedikit</option>
+                <option value="az" data-i18n="sortAZ">🔤 Judul (A — Z)</option>
+                <option value="za" data-i18n="sortZA">🔠 Judul (Z — A)</option>
+              </select>
+            </div>
+          </div>
+          <div class="platforms-grid" id="genreDramasGrid" style="margin-top: 16px;"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- View 5: Dedicated 3-Column Watch Page (Layout Ala DramaFlix Gambar 3) -->
+    <div class="view-panel" id="view-watch" style="display: none;">
+      <div class="watch-container">
+        <!-- Kolom Kiri: Metadata & Sinopsis -->
+        <aside class="watch-col-left">
+          <div class="watch-poster-wrapper">
+            <img class="watch-poster" id="watchPoster" src="" alt="Poster Drama">
+          </div>
+          <h1 class="watch-title" id="watchTitle">Judul Drama</h1>
+          <div class="watch-current-ep" id="watchCurrentEp">Episode 1</div>
+          <div class="watch-chips">
+            <span class="chip" id="watchEpCountChip">47 Episode</span>
+            <span class="chip chip-platform" id="watchPlatformChip">FREEREELS</span>
+            <span class="chip chip-status">✓ Siap Putar</span>
+          </div>
+          <p class="watch-synopsis" id="watchSynopsis">Sinopsis drama...</p>
+          <div class="watch-actions">
+            <button class="btn btn-secondary" id="watchBookmarkBtn">🔖 <span data-i18n="modalAddList">Daftar Saya</span></button>
+            <button class="btn btn-secondary" id="watchBackBtn">← Kembali</button>
+          </div>
+        </aside>
+
+        <!-- Kolom Tengah: Video Vertikal 9:16 + External Controls Bar -->
+        <main class="watch-col-center">
+          <div class="watch-player-frame">
+            <video id="videoPlayer" playsinline webkit-playsinline></video>
+            <div class="player-error" id="playerErrorMessage"></div>
+            <div class="player-loader" id="playerLoader" style="display: none;">
+              <div class="spinner"></div>
+              <span id="playerLoaderText">Menghubungkan stream video...</span>
+            </div>
+          </div>
+
+          <!-- Controls Bar di LUAR & BAWAH video (Tidak menutupi subtitle!) -->
+          <div class="watch-controls-bar">
+            <!-- Seekbar Slider -->
+            <div class="watch-seekbar-container" id="playerProgressBarContainer">
+              <div class="watch-seekbar-fill" id="playerProgressBar"></div>
+            </div>
+
+            <div class="watch-controls-row">
+              <div class="ctrl-group">
+                <button class="ctrl-btn" id="playerPlayPauseBtn" title="Putar / Jeda">▶</button>
+                <button class="ctrl-btn" id="playerPrevBtn" title="Episode Sebelumnya">⏮</button>
+                <button class="ctrl-btn" id="playerSkipBack" title="Mundur 10 detik">↺ 10s</button>
+                <button class="ctrl-btn" id="playerSkipForward" title="Maju 10 detik">↻ 10s</button>
+                <button class="ctrl-btn" id="playerNextBtn" title="Episode Berikutnya">⏭</button>
+                <span class="watch-time-display" id="playerTimeDisplay">0:00 / 0:00</span>
+              </div>
+
+              <div class="ctrl-group">
+                <select class="watch-select" id="playerSpeedSelect" title="Kecepatan">
+                  <option value="1.0">1.0x</option>
+                  <option value="1.25">1.25x</option>
+                  <option value="1.5">1.5x</option>
+                  <option value="2.0">2.0x</option>
+                </select>
+                <select class="watch-select" id="playerSubtitleSelect" title="Subtitle" style="display: none;"></select>
+                <button class="ctrl-btn" id="playerFullscreenBtn" title="Layar Penuh">⛶</button>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <!-- Kolom Kanan: Grid Episode & Antrean Selanjutnya -->
+        <aside class="watch-col-right">
+          <div class="ep-header">
+            <div class="ep-header-title">Episode</div>
+            <div class="ep-header-count" id="watchEpTotalCount">47</div>
+          </div>
+
+          <!-- Grid Kotak Episode 1..N (Ala DramaFlix Gambar 3) -->
+          <div class="watch-episodes-grid" id="watchEpisodeGrid"></div>
+
+          <!-- Toggle Autoplay -->
+          <div class="watch-autoplay-box">
+            <span class="autoplay-label">Putar otomatis episode berikutnya</span>
+            <label class="switch">
+              <input type="checkbox" id="playerAutoplayToggle" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <!-- Section Antrean Selanjutnya -->
+          <div class="upnext-section">
+            <div class="upnext-header">Selanjutnya</div>
+            <div class="upnext-list" id="watchUpNextList"></div>
+          </div>
+        </aside>
+      </div>
+    </div>
   </main>
 
-  <!-- Modal Detail Drama -->
+  <!-- Modal Detail Drama (Preview Cepat Sebelum Nonton) -->
   <div class="modal" id="detailModal">
     <div class="modal-backdrop" id="modalBackdrop"></div>
     <div class="modal-dialog">
       <button class="modal-close" id="modalCloseBtn">✕</button>
       <div class="modal-banner" id="modalBanner">
         <div class="modal-banner-gradient"></div>
-        <div class="modal-banner-meta">
-          <h2 id="modalTitle">Judul Drama</h2>
-          <div class="modal-banner-actions">
-            <button class="btn btn-primary" id="modalPlayBtn">▶ Putar Episode 1</button>
-          </div>
-        </div>
       </div>
       <div class="modal-body">
-        <div class="modal-info">
-          <div class="modal-stats">
-            <span class="match-score">98% Cocok</span>
-            <span class="badge" id="modalProviderBadge">Provider</span>
-            <span class="badge" id="modalEpCountBadge">0 Episode</span>
-          </div>
-          <p class="modal-synopsis" id="modalSynopsis">Sinopsis...</p>
+        <h2 class="modal-title" id="modalTitle">Judul Drama</h2>
+        <div class="modal-meta-row">
+          <span class="card-badge" id="modalProviderBadge">REELSHORT</span>
+          <span id="modalEpCountBadge">45 Episode</span>
         </div>
-
-        <div class="episode-section">
-          <h3>Daftar Episode</h3>
-          <div class="episode-grid" id="episodeGrid">
-            <!-- Episode items dimasukkan dinamis -->
-          </div>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="modalPlayBtn">▶ <span data-i18n="heroPlay">Putar Sekarang</span></button>
+          <button class="btn btn-secondary" id="modalBookmarkBtn">+ <span data-i18n="modalAddList">Daftar Saya</span></button>
         </div>
+        <p class="modal-synopsis" id="modalSynopsis">Sinopsis drama...</p>
+        <div class="episode-section-title" data-i18n="modalEpisodes">Daftar Episode</div>
+        <div class="episode-grid" id="episodeGrid"></div>
       </div>
     </div>
   </div>
 
-  <!-- Video Player Overlay -->
-  <div class="player-overlay" id="playerOverlay">
-    <div class="player-header">
-      <div class="player-info">
-        <h3 id="playerDramaTitle">Judul Drama</h3>
-        <p id="playerEpTitle">Episode 1</p>
-      </div>
-      <div class="player-actions">
-        <button class="player-btn" id="nextEpBtn" title="Episode Berikutnya">⏭ Berikutnya</button>
-        <button class="player-close" id="playerCloseBtn" title="Tutup Pemutar">✕</button>
-      </div>
-    </div>
-    <div class="video-container">
-      <div id="playerErrorMessage" class="player-error-msg" style="display:none;"></div>
-      <video id="videoPlayer" controls autoplay playsinline preload="auto"></video>
-    </div>
-  </div>
-
-  <script src="/app.js"></script>
+  <script type="module" src="/js/app.js"></script>
 </body>
 </html>
