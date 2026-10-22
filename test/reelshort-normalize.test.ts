@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { ReelShortClient } from "../src/providers/reelshort/client.js";
+import { ReelShortClient } from "../src/integrations/providers/reelshort/client.js";
 import {
   bookToDetail,
   bookToSummary,
@@ -9,7 +9,7 @@ import {
   flattenHallBooks,
   type RawBook,
   type RawChapterInfo,
-} from "../src/providers/reelshort/normalize.js";
+} from "../src/integrations/providers/reelshort/normalize.js";
 
 interface Fixture {
   searchItems: RawBook[];

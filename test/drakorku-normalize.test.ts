@@ -10,7 +10,7 @@ import {
   stripHtml,
   type RawCategory,
   type RawPost,
-} from "../src/providers/drakorku/normalize.js";
+} from "../src/integrations/providers/drakorku/normalize.js";
 
 interface Fixture {
   searchPosts: RawPost[];

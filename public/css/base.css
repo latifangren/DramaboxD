@@ -1,0 +1,36 @@
+/* Custom Netflix Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .billboard-title { font-size: 30px; }
+  .billboard { height: 50vh; min-height: 380px; }
+  .drama-card { flex: 0 0 135px; }
+  .search-box input { width: 120px; }
+  .search-box input:focus { width: 140px; }
+}

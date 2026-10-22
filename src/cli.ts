@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { loadConfig } from "./config.js";
-import { writeSeriesM3u } from "./m3u.js";
-import { createProvider, IMPLEMENTED, PLANNED } from "./providers/registry.js";
-import type { DramaProvider } from "./types.js";
+import { loadConfig } from "./infrastructure/config/index.js";
+import { writeSeriesM3u } from "./shared/utils/m3u.js";
+import { createProvider, IMPLEMENTED, PLANNED } from "./integrations/providers/registry.js";
+import type { DramaProvider } from "./shared/types/index.js";
 
 const HELP = `DracinScraper — scrape drama pendek jadi playlist .m3u per judul
 

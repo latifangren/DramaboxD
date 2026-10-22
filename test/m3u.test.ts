@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildM3u, slugify } from "../src/m3u.js";
-import type { Episode } from "../src/types.js";
+import { buildM3u, slugify } from "../src/shared/utils/m3u.js";
+import type { Episode } from "../src/shared/types/index.js";
 
 test("slugify mengikuti pola nama file contoh pengguna", () => {
   assert.equal(slugify("Menolak Lima Pasangan Wanitaku"), "menolak-lima-pasangan-wanitaku");

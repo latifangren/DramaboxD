@@ -1,0 +1,112 @@
+/* Player Overlay */
+.player-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 300;
+  flex-direction: column;
+}
+
+.player-overlay.active {
+  display: flex;
+}
+
+.player-header {
+  height: 64px;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.player-info h3 {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.player-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.player-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.player-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.player-close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.video-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.player-error-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(180, 20, 20, 0.9);
+  color: #fff;
+  padding: 18px 26px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  max-width: 80%;
+  text-align: center;
+  z-index: 20;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  outline: none;
+  object-fit: contain;
+}
+
+
+/* === DramaboxD player additions: kontrol vertikal 9:16 === */
+.video-container { aspect-ratio: 9 / 16; max-height: calc(100vh - 120px); margin: 0 auto; background: #000; }
+.player-extra { display: flex; gap: 8px; align-items: center; }
+.player-extra button, .player-extra select { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; padding: 6px 10px; cursor: pointer; font-size: 13px; }
+.subtitle-menu { position: absolute; right: 12px; bottom: 76px; background: rgba(12,12,14,.95); border: 1px solid rgba(255,255,255,.15); border-radius: 10px; padding: 8px; display: none; z-index: 30; min-width: 170px; }
+.subtitle-menu.active { display: block; }
+.subtitle-menu button { display: block; width: 100%; text-align: left; background: none; border: none; color: #eee; padding: 7px 9px; cursor: pointer; border-radius: 6px; font-size: 13px; }
+.subtitle-menu button:hover, .subtitle-menu button.active { background: rgba(229,9,20,.25); }

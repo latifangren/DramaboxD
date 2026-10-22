@@ -8,7 +8,7 @@ import {
   normalizeDetail,
   normalizeSearch,
   parseVideoModel,
-} from "../src/providers/melolo/normalize.js";
+} from "../src/integrations/providers/melolo/normalize.js";
 
 async function fixture(): Promise<{ search: unknown; directory: unknown; videoModel: unknown }> {
   const raw = await readFile(new URL("../fixtures/melolo-sample.json", import.meta.url), "utf8");

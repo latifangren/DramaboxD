@@ -1,6 +1,6 @@
-# DracinScraper
+# DramaboxD
 
-Scrape drama pendek Cina (dracin) dari berbagai provider dan hasilkan **playlist `.m3u` per judul** — 1 file = 1 judul, semua episode terurut:
+Platform streaming drama pendek (dracin) lokal yang modular: agregator katalog + pemutar web bergaya Netflix/DramaFlix dari banyak platform (ReelShort, FreeReels, PineDrama, Melolo, DrakorKu, DramaBox), plus CLI pengekspor **playlist `.m3u` per judul** — 1 file = 1 judul, semua episode terurut:
 
 ```m3u
 #EXTM3U
@@ -8,8 +8,24 @@ Scrape drama pendek Cina (dracin) dari berbagai provider dan hasilkan **playlist
 https://.../vod-112094/.../...-sd.m3u8
 ```
 
-## Status (v0.6.0)
+Arsitektur berlapis (transport → service → integration/provider SPI → infrastructure) didokumentasikan di **[ARCHITECTURE.md](ARCHITECTURE.md)** — tidak ada layer yang dilompati, provider baru cukup implementasi kontrak `DramaProvider` + registrasi.
 
+## Menjalankan WebUI
+
+```bash
+npm install
+npm run serve        # tsx src/index.ts — http://localhost:3004 (dan IP LAN untuk HP/TV)
+# produksi: npm run build && npm start
+```
+
+Fitur: billboard + baris katalog per platform, pencarian global semua platform sekaligus, halaman direktori Platform (aktif/segera hadir), pemutar vertikal 9:16 (Hls.js, lewati ±10 dtk, kecepatan, auto-next, subtitle dari manifest HLS), Lanjutkan Menonton + Daftar Saya (localStorage), dan UI dwibahasa ID/EN. Proxy stream `/api/stream` menjaga SSRF (IP privat ditolak) dan menyamarkan Referer per platform.
+
+Endpoint utama: `/api/status`, `/api/platforms`, `/api/browse`, `/api/search`, `/api/search/global`, `/api/drama/:provider/:id`, `/api/stream`, `/api/subtitles`.
+
+## Status (v0.8.0)
+
+- ✅ Restruktur total ke arsitektur DramaboxD (branch `dev-muse`): backend berlapis `src/{http,services,integrations,infrastructure,shared}`, frontend SPA modular di `public/{css,js}`, nama paket `dramaboxd`.
+- ✅ Provider **NetShort** — jalur **web** (netshort.com): API `/prod-web-api` beramplop enkripsi AES-256-ECB + RSA persis klien web resmi (kunci sesi konstan + pasangan kunci RSA dari bundle publik situs; tanpa amplop server membalas 500). Stream = MP4 bertanda tangan (`playVoucher`, cfcdn.netshort.com). **Live terverifikasi**: search "queen" 3.786 hasil; scrape "Back to the '90s: A Pop Queen's Comeback" → 7/30 episode tertulis (23 terkunci dihormati & tercatat). Detail: `docs/teardown-netshort-web.md`. Catatan: jumlah episode gratis bervariasi per judul; durasi upstream berupa string desimal.
 - ✅ Kerangka provider seragam pola **SekaiDrama** (Sansekai/SekaiDrama): satu interface untuk semua provider.
 - ✅ Provider **DramaBox** — adapter API upstream terkonfigurasi.
 - ✅ Provider **FreeReels** — API resmi aplikasi (hasil reverse APK 2.3.40: dekripsi SigL360, login anonim bertanda tangan MD5, URL putar per episode via `info_push_v2`). **Live terverifikasi penuh**: scrape "Passionate Love" → 81/81 episode tertulis jadi M3U (22 Okt 2026). Detail: `docs/tes-live-freereels.md`.
@@ -20,9 +36,9 @@ https://.../vod-112094/.../...-sd.m3u8
 - ✅ Provider **ReelShort** — jalur **web** (`www.reelshort.com/api`): signing HMAC-SHA256 (secret dari bundle JS publik), dekripsi amplop AES-128-CBC → base64 → zlib untuk respons terenkripsi, sesi anonim. APK Android-nya terkunci SecShell — tidak dipakai. **Live terverifikasi**: search/detail/51 chapter "The Great and Powerful Genie" semua memberi `video_url` m3u8 (v-mps.crazymaplestudios.com, CDN yang sama dengan contoh M3U awal proyek) + durasi. ID seri = `book_id` hex (bukan `t_book_id`). Detail: `docs/teardown-reelshort-4.1.00.md`, `docs/riset-reelshort-web.md`. Catatan: trending = urutan `read_count` dari feed home (webInfo tidak memberi label seksi).
 - ✅ 33/33 test lolos, typecheck bersih (`npm test`, `npm run typecheck`).
 - ⚠️ DramaBox: API publik Sansekai (`api.sansekai.my.id`) menolak request dari IP VM pengembangan dengan HTTP 403 (22 Okt 2026). Adapter tetap bisa diarahkan ke base lain (mirror/self-host) lewat `DRAMABOX_API_BASE`. Pipeline penuh terverifikasi lewat mode `mock`.
-- ⏭️ Roadmap provider: FlickReels, NetShort, ReelShort, ShortMax, GoodShort.
+- ⏭️ Roadmap provider: FlickReels, NetShort, ShortMax, GoodShort (LokLok diparkir — proteksi DPT-Shell + Dex2C).
 
-## Cara pakai
+## Cara pakai CLI
 
 ```bash
 npm install
@@ -36,6 +52,7 @@ node dist/cli.js scrape-search "love" --provider melolo --out output   # Melolo 
 node dist/cli.js scrape my-husband-murdered-me --provider pinedrama --out output  # PineDrama web (ID = slug)
 node dist/cli.js scrape 3730 --provider drakorku --out output  # DrakorKu (ID = cid kategori)
 node dist/cli.js scrape 6a5191d8fa9f9f7a09081789 --provider reelshort --out output  # ReelShort web (ID = book_id hex)
+node dist/cli.js scrape 2113091819067854850 --provider netshort --out output  # NetShort web (ID = shortPlayId numerik)
 node dist/cli.js search "pewaris"                      # DramaBox (live, butuh upstream yang bisa diakses)
 node dist/cli.js scrape <bookId> --out output          # -> output/<slug-judul>.m3u
 

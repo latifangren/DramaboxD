@@ -2,14 +2,14 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { authorizationHeader, loginSign } from "../src/providers/freereels/client.js";
+import { authorizationHeader, loginSign } from "../src/integrations/providers/freereels/client.js";
 import {
   episodeMetas,
   mergeEpisode,
   normalizeDetail,
   normalizeSeriesList,
   playEpisodeOf,
-} from "../src/providers/freereels/normalize.js";
+} from "../src/integrations/providers/freereels/normalize.js";
 
 async function fixture(): Promise<{ search: unknown; detail: unknown; push: unknown }> {
   const raw = await readFile(new URL("../fixtures/freereels-sample.json", import.meta.url), "utf8");

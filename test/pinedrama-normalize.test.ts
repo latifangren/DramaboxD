@@ -7,7 +7,7 @@ import {
   parseEpisodeList,
   parseJsonLd,
   parseSeriesPage,
-} from "../src/providers/pinedrama/normalize.js";
+} from "../src/integrations/providers/pinedrama/normalize.js";
 
 interface Fixture {
   seriesJsonLd: Record<string, unknown>;

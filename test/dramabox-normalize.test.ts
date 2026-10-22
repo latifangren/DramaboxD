@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { normalizeDetail, normalizeEpisodes, normalizeSeriesList } from "../src/providers/dramabox/normalize.js";
+import { normalizeDetail, normalizeEpisodes, normalizeSeriesList } from "../src/integrations/providers/dramabox/normalize.js";
 
 async function fixture(): Promise<{ search: unknown; detail: { chapterList: unknown } }> {
   const raw = await readFile(new URL("../fixtures/dramabox-sample.json", import.meta.url), "utf8");

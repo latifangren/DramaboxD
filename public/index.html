@@ -4,56 +4,54 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <title>DramaFlix — Streaming Drama Pendek</title>
-  <link rel="stylesheet" href="/style.css">
-  <!-- HLS.js for m3u8 streaming -->
+  <title>DramaboxD — Streaming Drama Pendek Lokal</title>
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/player.css">
+  <!-- HLS.js untuk streaming m3u8 -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
   <!-- Header / Navbar -->
   <header class="navbar" id="navbar">
     <div class="nav-left">
-      <div class="logo">DRAMA<span>FLIX</span></div>
+      <div class="logo">DRAMABOX<span>D</span></div>
       <nav class="nav-links">
-        <a href="#" class="active" onclick="location.reload()">Beranda</a>
-        <a href="#rows-container">Koleksi</a>
+        <a href="#/" data-nav="home" data-i18n="nav.home">Beranda</a>
+        <a href="#/platforms" data-nav="platforms" data-i18n="nav.platforms">Platform</a>
       </nav>
     </div>
     <div class="nav-right">
       <div class="search-box">
-        <select id="providerSelect" class="provider-select" title="Pilih Provider">
-          <option value="reelshort">ReelShort</option>
-          <option value="freereels">FreeReels</option>
-          <option value="dramabox">DramaBox</option>
-          <option value="melolo">Melolo</option>
-          <option value="mock">Mock</option>
-        </select>
-        <input type="text" id="searchInput" placeholder="Cari judul drama..." autocomplete="off">
-        <button id="searchBtn" class="search-btn" title="Cari">🔍</button>
+        <input type="text" id="searchInput" data-i18n-ph="nav.searchPlaceholder" placeholder="Cari judul drama..." autocomplete="off">
+        <button id="searchBtn" class="search-btn" data-i18n="nav.search" title="Cari">Cari</button>
+      </div>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn" data-lang="id">ID</button>
+        <button class="lang-btn" data-lang="en">EN</button>
       </div>
       <div class="lan-badge" id="lanBadge" title="Status Jaringan">LAN Ready</div>
     </div>
   </header>
 
-  <!-- Hero Billboard -->
+  <!-- Hero Billboard (hanya beranda) -->
   <section class="billboard" id="billboard">
     <div class="billboard-backdrop" id="billboardBg"></div>
     <div class="billboard-vignette"></div>
     <div class="billboard-content">
-      <span class="provider-pill" id="billboardProvider">MELOLO</span>
-      <h1 class="billboard-title" id="billboardTitle">Memuat Drama...</h1>
-      <p class="billboard-desc" id="billboardDesc">Mencari drama terpopuler...</p>
+      <span class="provider-pill" id="billboardProvider">DRAMABOXD</span>
+      <h1 class="billboard-title" id="billboardTitle" data-i18n="billboard.loadingTitle">Memuat Drama...</h1>
+      <p class="billboard-desc" id="billboardDesc" data-i18n="billboard.loadingDesc">Mencari drama terpopuler...</p>
       <div class="billboard-actions">
-        <button class="btn btn-primary" id="billboardPlayBtn">▶ Putar</button>
-        <button class="btn btn-secondary" id="billboardInfoBtn">ℹ Info Selengkapnya</button>
+        <button class="btn btn-primary" id="billboardPlayBtn" data-i18n="billboard.play">▶ Putar</button>
+        <button class="btn btn-secondary" id="billboardInfoBtn" data-i18n="billboard.moreInfo">ℹ Info Selengkapnya</button>
       </div>
     </div>
   </section>
 
-  <!-- Rows / Sliders -->
-  <main class="main-content" id="rows-container">
-    <div class="loader" id="mainLoader">Memuat katalog drama...</div>
-  </main>
+  <!-- Kontainer view SPA (home / platforms / search) -->
+  <main class="main-content" id="view-container"></main>
 
   <!-- Modal Detail Drama -->
   <div class="modal" id="detailModal">
@@ -65,14 +63,13 @@
         <div class="modal-banner-meta">
           <h2 id="modalTitle">Judul Drama</h2>
           <div class="modal-banner-actions">
-            <button class="btn btn-primary" id="modalPlayBtn">▶ Putar Episode 1</button>
+            <button class="btn btn-primary" id="modalPlayBtn" data-i18n="detail.playFirst">▶ Putar Episode 1</button>
           </div>
         </div>
       </div>
       <div class="modal-body">
         <div class="modal-info">
           <div class="modal-stats">
-            <span class="match-score">98% Cocok</span>
             <span class="badge" id="modalProviderBadge">Provider</span>
             <span class="badge" id="modalEpCountBadge">0 Episode</span>
           </div>
@@ -80,16 +77,15 @@
         </div>
 
         <div class="episode-section">
-          <h3>Daftar Episode</h3>
-          <div class="episode-grid" id="episodeGrid">
-            <!-- Episode items dimasukkan dinamis -->
-          </div>
+          <h3 data-i18n="detail.episodes">Daftar Episode</h3>
+          <div class="ep-pills" id="episodePills"></div>
+          <div class="episode-grid" id="episodeGrid"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Video Player Overlay -->
+  <!-- Video Player Overlay (vertikal 9:16) -->
   <div class="player-overlay" id="playerOverlay">
     <div class="player-header">
       <div class="player-info">
@@ -97,16 +93,32 @@
         <p id="playerEpTitle">Episode 1</p>
       </div>
       <div class="player-actions">
-        <button class="player-btn" id="nextEpBtn" title="Episode Berikutnya">⏭ Berikutnya</button>
-        <button class="player-close" id="playerCloseBtn" title="Tutup Pemutar">✕</button>
+        <button class="player-btn" id="nextEpBtn" data-i18n="player.next">⏭ Berikutnya</button>
+        <button class="player-close" id="playerCloseBtn" data-i18n-title="player.close" title="Tutup Pemutar">✕</button>
       </div>
     </div>
     <div class="video-container">
       <div id="playerErrorMessage" class="player-error-msg" style="display:none;"></div>
       <video id="videoPlayer" controls autoplay playsinline preload="auto"></video>
+      <div class="subtitle-menu" id="subtitleMenu"></div>
+    </div>
+    <div class="player-extra">
+      <button id="skipBackBtn" title="-10s">⏪ 10</button>
+      <button id="skipFwdBtn" title="+10s">10 ⏩</button>
+      <label><span data-i18n="player.speed">Kecepatan</span>
+        <select id="speedSelect">
+          <option value="0.5">0.5x</option>
+          <option value="1">1.0x</option>
+          <option value="1.25">1.25x</option>
+          <option value="1.5">1.5x</option>
+          <option value="2">2.0x</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="autoNextToggle" checked> <span data-i18n="player.autoNext">Putar berikutnya otomatis</span></label>
+      <button id="subtitleBtn" style="display:none;" data-i18n="player.subtitles">Subtitle</button>
     </div>
   </div>
 
-  <script src="/app.js"></script>
+  <script type="module" src="/js/app.js"></script>
 </body>
 </html>
