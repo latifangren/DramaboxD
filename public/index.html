@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>DramaFlix — Streaming Drama Pendek</title>
+  <link rel="stylesheet" href="/style.css">
+  <!-- HLS.js for m3u8 streaming -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <div class="logo">DRAMA<span>FLIX</span></div>
+      <nav class="nav-links">
+        <a href="#" class="active" onclick="location.reload()">Beranda</a>
+        <a href="#rows-container">Koleksi</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">
+        <select id="providerSelect" class="provider-select" title="Pilih Provider">
+          <option value="reelshort">ReelShort</option>
+          <option value="freereels">FreeReels</option>
+          <option value="dramabox">DramaBox</option>
+          <option value="melolo">Melolo</option>
+          <option value="mock">Mock</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Cari judul drama..." autocomplete="off">
+        <button id="searchBtn" class="search-btn" title="Cari">🔍</button>
+      </div>
+      <div class="lan-badge" id="lanBadge" title="Status Jaringan">LAN Ready</div>
+    </div>
+  </header>
+
+  <!-- Hero Billboard -->
+  <section class="billboard" id="billboard">
+    <div class="billboard-backdrop" id="billboardBg"></div>
+    <div class="billboard-vignette"></div>
+    <div class="billboard-content">
+      <span class="provider-pill" id="billboardProvider">MELOLO</span>
+      <h1 class="billboard-title" id="billboardTitle">Memuat Drama...</h1>
+      <p class="billboard-desc" id="billboardDesc">Mencari drama terpopuler...</p>
+      <div class="billboard-actions">
+        <button class="btn btn-primary" id="billboardPlayBtn">▶ Putar</button>
+        <button class="btn btn-secondary" id="billboardInfoBtn">ℹ Info Selengkapnya</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rows / Sliders -->
+  <main class="main-content" id="rows-container">
+    <div class="loader" id="mainLoader">Memuat katalog drama...</div>
+  </main>
+
+  <!-- Modal Detail Drama -->
+  <div class="modal" id="detailModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-dialog">
+      <button class="modal-close" id="modalCloseBtn">✕</button>
+      <div class="modal-banner" id="modalBanner">
+        <div class="modal-banner-gradient"></div>
+        <div class="modal-banner-meta">
+          <h2 id="modalTitle">Judul Drama</h2>
+          <div class="modal-banner-actions">
+            <button class="btn btn-primary" id="modalPlayBtn">▶ Putar Episode 1</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-info">
+          <div class="modal-stats">
+            <span class="match-score">98% Cocok</span>
+            <span class="badge" id="modalProviderBadge">Provider</span>
+            <span class="badge" id="modalEpCountBadge">0 Episode</span>
+          </div>
+          <p class="modal-synopsis" id="modalSynopsis">Sinopsis...</p>
+        </div>
+
+        <div class="episode-section">
+          <h3>Daftar Episode</h3>
+          <div class="episode-grid" id="episodeGrid">
+            <!-- Episode items dimasukkan dinamis -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Player Overlay -->
+  <div class="player-overlay" id="playerOverlay">
+    <div class="player-header">
+      <div class="player-info">
+        <h3 id="playerDramaTitle">Judul Drama</h3>
+        <p id="playerEpTitle">Episode 1</p>
+      </div>
+      <div class="player-actions">
+        <button class="player-btn" id="nextEpBtn" title="Episode Berikutnya">⏭ Berikutnya</button>
+        <button class="player-close" id="playerCloseBtn" title="Tutup Pemutar">✕</button>
+      </div>
+    </div>
+    <div class="video-container">
+      <div id="playerErrorMessage" class="player-error-msg" style="display:none;"></div>
+      <video id="videoPlayer" controls autoplay playsinline preload="auto"></video>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
