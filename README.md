@@ -8,7 +8,7 @@ Scrape drama pendek Cina (dracin) dari berbagai provider dan hasilkan **playlist
 https://.../vod-112094/.../...-sd.m3u8
 ```
 
-## Status (v0.6.0)
+## Status (v0.12.0)
 
 - ✅ Kerangka provider seragam pola **SekaiDrama** (Sansekai/SekaiDrama): satu interface untuk semua provider.
 - ✅ Provider **DramaBox** — adapter API upstream terkonfigurasi.
@@ -18,9 +18,13 @@ https://.../vod-112094/.../...-sd.m3u8
 - ✅ Penulis M3U + CLI + mode `mock` offline.
 - ✅ Provider **DrakorKu** — panel "Your Videos Channel" (`kampretloh.top/v3`), hasil teardown APK 5.1.2: API teks terang (base URL + API key klien dari AppConfig + header persis app; tanpa itu server membalas kosong). **Genre-nya drakor** (drama Korea sub Indo), bukan dracin — disertakan karena pipeline-nya sama. Model panel: category (cid) = seri, post = episode dengan MP4 langsung; tidak ada paywall di level API. ID seri = cid angka. Detail: `docs/teardown-drakorku-5.1.2.md`. Catatan: trending = urutan rating (panel tidak punya feed trending); durasi episode tidak diberikan API (EXTINF -1).
 - ✅ Provider **ReelShort** — jalur **web** (`www.reelshort.com/api`): signing HMAC-SHA256 (secret dari bundle JS publik), dekripsi amplop AES-128-CBC → base64 → zlib untuk respons terenkripsi, sesi anonim. APK Android-nya terkunci SecShell — tidak dipakai. **Live terverifikasi**: search/detail/51 chapter "The Great and Powerful Genie" semua memberi `video_url` m3u8 (v-mps.crazymaplestudios.com, CDN yang sama dengan contoh M3U awal proyek) + durasi. ID seri = `book_id` hex (bukan `t_book_id`). Detail: `docs/teardown-reelshort-4.1.00.md`, `docs/riset-reelshort-web.md`. Catatan: trending = urutan `read_count` dari feed home (webInfo tidak memberi label seksi).
-- ✅ 33/33 test lolos, typecheck bersih (`npm test`, `npm run typecheck`).
+- ✅ Provider **NetShort** — jalur **web** (netshort.com): API same-origin `/prod-web-api` beramplop enkripsi penuh persis klien resmi (AES-256-ECB + RSA, kunci dari bundle publik situs). Stream = MP4 bertanda tangan per episode dari `episode_info`; episode `isLock` tidak diberi voucher oleh server. **Live terverifikasi**: scrape "Back to the '90s: A Pop Queen's Comeback" → 7/30 episode gratis tertulis, 23 terkunci tercatat (22 Okt 2026). Detail: `docs/teardown-netshort-web.md`.
+- ✅ Provider **FlickReels** — jalur **web** (www.flickreels.net, Nuxt SSR): seluruh data seri + episode dari payload `__NUXT_DATA__` halaman episode; stream dari JSON-LD VideoObject (HLS bertanda tangan). ID seri komposit `slug/playletId` (slug wajib persis, dari href kartu katalog). **Live terverifikasi**: scrape "Daddy's Little Savior" (58 ep) → 9/58 tertulis, 49 terkunci tercatat. Detail: `docs/teardown-flickreels-web.md`.
+- ✅ Provider **ShortMax** — jalur **web resmi** (www.shorttv.live): API `shortweb.shorttv.live/app-api/app` beramplop AES-128-CBC dua arah persis klien web resmi (kunci=IV dari bundle publik; header X-Encrypted + Language-Code wajib). Satu panggilan detail memuat semua episode; stream HLS bertanda tangan (segmen terbuka). **Live terverifikasi**: scrape "Chasing Love" (66 ep) → 7/66 tertulis (~1,5 dtk; `lockBegin` 7), 59 terkunci dihormati. Detail: `docs/teardown-shortmax-web.md`.
+- ✅ Provider **GoodShort** — jalur **web resmi** (www.goodshort.com): API same-origin `/hwycreels/*` warisan backend GoodNovel (JSON polos; bahasa katalog via Accept-Language, tiap edisi bahasa = bookId sendiri). Episode gratis membawa `m3u8Path` (HLS bertanda tangan) + `playTime` terverifikasi akurat sebagai durasi; episode berbayar tidak diberi field itu oleh server. **Live terverifikasi**: scrape 64 episode → 9/64 tertulis (~2,4 dtk), 55 terkunci dihormati. Detail: `docs/teardown-goodshort-web.md`.
+- ✅ 65/65 test lolos, typecheck bersih (`npm test`, `npm run typecheck`).
 - ⚠️ DramaBox: API publik Sansekai (`api.sansekai.my.id`) menolak request dari IP VM pengembangan dengan HTTP 403 (22 Okt 2026). Adapter tetap bisa diarahkan ke base lain (mirror/self-host) lewat `DRAMABOX_API_BASE`. Pipeline penuh terverifikasi lewat mode `mock`.
-- ⏭️ Roadmap provider: FlickReels, NetShort, ReelShort, ShortMax, GoodShort.
+- ⏭️ Roadmap provider: habis — 10 provider aktif; LokLok diparkir (APK terproteksi DPT-Shell + Dex2C-Pro).
 
 ## Cara pakai
 
@@ -62,6 +66,13 @@ Salin `.env.example` sebagai acuan (atau set environment langsung):
 | `DRAKORKU_API_KEY` | (key klien dari app 5.1.2) | API key panel DrakorKu |
 | `REELSHORT_API_BASE` | `https://www.reelshort.com` | Base situs ReelShort (jalur web) |
 | `REELSHORT_LANGUAGE` | `en` | Bahasa katalog ReelShort (`lang`, ikut ditandatangani) |
+| `NETSHORT_SITE_BASE` | `https://netshort.com` | Base situs NetShort (jalur web) |
+| `NETSHORT_LANGUAGE` | `en` | Bahasa katalog NetShort |
+| `FLICKREELS_SITE_BASE` | `https://www.flickreels.net` | Base situs FlickReels (jalur web) |
+| `SHORTMAX_API_BASE` | `https://shortweb.shorttv.live/app-api/app` | Base API ShortMax (jalur web resmi) |
+| `SHORTMAX_LANGUAGE` | `en` | Bahasa katalog ShortMax (`Language-Code`) |
+| `GOODSHORT_SITE_BASE` | `https://www.goodshort.com` | Base situs GoodShort (jalur web resmi) |
+| `GOODSHORT_LANGUAGE` | `en` | Bahasa katalog GoodShort (Accept-Language) |
 | `DRACIN_DELAY_MS` | `500` | Jeda antar request |
 | `DRACIN_TIMEOUT_MS` | `30000` | Timeout per request |
 | `DRACIN_OUT_DIR` | `output` | Folder output M3U |
@@ -89,10 +100,14 @@ src/
 │   │   ├── client.ts      Parameter umum aplikasi (app_id/device_id), tanpa sesi
 │   │   ├── index.ts       Search + directory + RPC video_model
 │   │   └── normalize.ts   Book/item/video_model -> model internal (main_url base64)
-│   └── pinedrama/
-│       ├── client.ts      HTTP situs (UA browser) + API getEpisodePlayUrl
-│       ├── index.ts       Katalog /genres + halaman seri + URL putar per episode
-│       └── normalize.ts   JSON-LD + payload RSC + kartu katalog -> model internal
+│   ├── pinedrama/
+│   │   ├── client.ts      HTTP situs (UA browser) + API getEpisodePlayUrl
+│   │   ├── index.ts       Katalog /genres + halaman seri + URL putar per episode
+│   │   └── normalize.ts   JSON-LD + payload RSC + kartu katalog -> model internal
+│   ├── netshort/          Web: amplop AES-256-ECB + RSA, MP4 bertanda tangan
+│   ├── flickreels/        Web: payload Nuxt SSR + JSON-LD HLS
+│   ├── shortmax/          Web: amplop AES-128-CBC dua arah, HLS bertanda tangan
+│   └── goodshort/         Web: API /hwycreels JSON polos, HLS + durasi akurat
 └── cli.ts                 CLI (tanpa dependensi runtime)
 fixtures/                  Contoh respons mentah untuk mock & test
 test/                      node:test — normalizer, signing + penulis M3U

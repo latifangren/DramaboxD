@@ -1,0 +1,265 @@
+{
+ "detail": {
+  "code": 0,
+  "data": {
+   "shortPlayId": 36517,
+   "shortPlayCode": "865860",
+   "shortPlayName": "Chasing Love",
+   "summary": "War forces Emperor Cang Hanyu to trade his infant daughter to a priest to save his dying consort Nan Si—sending her across time to break a deadly curse. Through different lifetimes—as a neglected wife and a pampered princess—they face power struggles and palace intrigue. Through it all, whether they remember each other or not, they always find their way back, bound by a love that defies fate itself.",
+   "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+   "lockBegin": 7,
+   "labelList": [
+    {
+     "id": 525,
+     "labelId": 200053,
+     "labelName": "古代",
+     "labelType": 1,
+     "displayName": "Ancient"
+    },
+    {
+     "id": 945,
+     "labelId": 200088,
+     "labelName": "穿越",
+     "labelType": 2,
+     "displayName": "Time Travel"
+    }
+   ],
+   "classList": [
+    {
+     "id": 15,
+     "classId": 200002,
+     "className": "古代",
+     "displayName": "Period Dramas"
+    },
+    {
+     "id": 631,
+     "classId": 200046,
+     "className": "宫斗宅斗",
+     "displayName": "Palace Scheming"
+    }
+   ],
+   "episodeList": [
+    {
+     "episodeNum": 1,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": "{\"video_720\":\"https://akamai-static.shorttv.live/hls-encrypted/0b49d682c54d4d5b8e8a6e8ffe20ef40_720/main.m3u8?auth_key=REDACTED\",\"video_1080\":\"https://akamai-static.shorttv.live/hls-encrypted/cd39afa586ce44d28b85e91ce84f2480_1080/main.m3u8?auth_key=REDACTED\",\"video_480\":\"https://akamai-static.shorttv.live/hls-encrypted/99e93ceb020b4b4b8d223f0379fa8080_480/main.m3u8?auth_key=REDACTED\"}"
+    },
+    {
+     "episodeNum": 2,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": "{\"video_720\":\"https://akamai-static.shorttv.live/hls-encrypted/799931eaf1fe4517b08e07ea93a1dd1f_720/main.m3u8?auth_key=REDACTED\",\"video_1080\":\"https://akamai-static.shorttv.live/hls-encrypted/45df21647c9249aa99cbfba39edd39b2_1080/main.m3u8?auth_key=REDACTED\",\"video_480\":\"https://akamai-static.shorttv.live/hls-encrypted/a1f6820763f34a319aaf8f11a5add4b9_480/main.m3u8?auth_key=REDACTED\"}"
+    },
+    {
+     "episodeNum": 3,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": "{\"video_720\":\"https://akamai-static.shorttv.live/hls-encrypted/15521f8374114ea7804f288d7ffd5d67_720/main.m3u8?auth_key=REDACTED\",\"video_1080\":\"https://akamai-static.shorttv.live/hls-encrypted/e9b3d3f5d43b42cc81a7d062cadd465c_1080/main.m3u8?auth_key=REDACTED\",\"video_480\":\"https://akamai-static.shorttv.live/hls-encrypted/efc32ba0b26642178dc99c68b90aa72e_480/main.m3u8?auth_key=REDACTED\"}"
+    },
+    {
+     "episodeNum": 4,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": "{\"video_720\":\"https://akamai-static.shorttv.live/hls-encrypted/ea990f88c1ae474ea119c61238bafdf5_720/main.m3u8?auth_key=REDACTED\",\"video_1080\":\"https://akamai-static.shorttv.live/hls-encrypted/c6e3fa2070ce48238a7f3aa8ef2da3de_1080/main.m3u8?auth_key=REDACTED\",\"video_480\":\"https://akamai-static.shorttv.live/hls-encrypted/59a8e8a0ee5f4f5fa5ce60c8a84f0220_480/main.m3u8?auth_key=REDACTED\"}"
+    },
+    {
+     "episodeNum": 5,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": "{\"video_720\":\"https://akamai-static.shorttv.live/hls-encrypted/a1d6687638694d168c23d41c85019036_720/main.m3u8?auth_key=REDACTED\",\"video_1080\":\"https://akamai-static.shorttv.live/hls-encrypted/8faaefa4c6264f918238ddc2c668d72f_1080/main.m3u8?auth_key=REDACTED\",\"video_480\":\"https://akamai-static.shorttv.live/hls-encrypted/7e34ee55718d474e965002f37cfb9cd2_480/main.m3u8?auth_key=REDACTED\"}"
+    },
+    {
+     "episodeNum": 6,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": "{\"video_720\":\"https://akamai-static.shorttv.live/hls-encrypted/9c3ee324550f46bab0026425df6f9fdc_720/main.m3u8?auth_key=REDACTED\",\"video_1080\":\"https://akamai-static.shorttv.live/hls-encrypted/de9132b62c394f60b1696b8c5e3784ef_1080/main.m3u8?auth_key=REDACTED\",\"video_480\":\"https://akamai-static.shorttv.live/hls-encrypted/ad206d71f8704e4b9dff8680796442d7_480/main.m3u8?auth_key=REDACTED\"}"
+    },
+    {
+     "episodeNum": 7,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": "{\"video_720\":\"https://akamai-static.shorttv.live/hls-encrypted/53fb14c252314968a9b96720b3a8a266_720/main.m3u8?auth_key=REDACTED\",\"video_1080\":\"https://akamai-static.shorttv.live/hls-encrypted/1c7c6c37087e48f3843fee8c9ab65dfc_1080/main.m3u8?auth_key=REDACTED\",\"video_480\":\"https://akamai-static.shorttv.live/hls-encrypted/02a47e7a4fa647d98e7670049ad90f9d_480/main.m3u8?auth_key=REDACTED\"}"
+    },
+    {
+     "episodeNum": 8,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": ""
+    },
+    {
+     "episodeNum": 10,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": ""
+    },
+    {
+     "episodeNum": 66,
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/05/56ba6e3e64b5468ba38232bc564b46b4.jpg",
+     "frameExtractionCover": "",
+     "encryptedVideoUrl": ""
+    }
+   ]
+  }
+ },
+ "catalog": {
+  "code": 0,
+  "data": {
+   "list": [
+    {
+     "shortPlayId": 49188,
+     "shortPlayCode": "878551",
+     "shortPlayName": "My Boyfriend’s Brother Calls Me Baby 2",
+     "collectNum": 619,
+     "convertCollectNum": "619",
+     "playNum": 1857,
+     "convertPlayNum": "1.9K",
+     "summary": "When her daughter's unlimited black card racks up outrageous bills, Lila returns home to find Nora injured and penniless. The housekeeper's son has stolen the card, given it to his lover, and used the Russo name to bully its true heiress. Now they must face Nora's mother—and her father, a ruthless mafia godfather. Lila will make them pay, but her greatest battle is helping her daughter reclaim her courage and her future.",
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/10/17/e9e1c2ecce324936b1fa6c4bf13e920f.jpeg",
+     "horizontalCoverId": "https://akamai-static.shorttv.live/images/cover/2026/10/17/77bed4564889438a91770aaae8629610.png",
+     "lanShortPlayName": "My Boyfriend’s Brother Calls Me Baby 2",
+     "lanShortPlayDescription": "When her daughter's unlimited black card racks up outrageous bills, Lila returns home to find Nora injured and penniless. The housekeeper's son has stolen the card, given it to his lover, and used the Russo name to bully its true heiress. Now they must face Nora's mother—and her father, a ruthless mafia godfather. Lila will make them pay, but her greatest battle is helping her daughter reclaim her courage and her future.",
+     "lanShortPlayRecommend": "",
+     "lanCoverId": "https://akamai-static.shorttv.live/images/cover/2026/10/17/e9e1c2ecce324936b1fa6c4bf13e920f.jpeg",
+     "languageCode": "en",
+     "rawName": "My Boyfriend’s Brother Calls Me Baby 2"
+    },
+    {
+     "shortPlayId": 46710,
+     "shortPlayCode": "876073",
+     "shortPlayName": "测试",
+     "collectNum": 96519,
+     "convertCollectNum": "96.5K",
+     "playNum": 289557,
+     "convertPlayNum": "290K",
+     "summary": "测试",
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/07/04/e2909bd4d26743cc99e00e43591f86da.png",
+     "horizontalCoverId": "https://akamai-static.shorttv.live/images/cover/2026/07/04/2682544cde834136832816d282787de7.png",
+     "lanShortPlayName": "Test",
+     "lanShortPlayDescription": "测试",
+     "lanShortPlayRecommend": "",
+     "lanCoverId": "https://akamai-static.shorttv.live/images/cover/2026/07/04/e2909bd4d26743cc99e00e43591f86da.png",
+     "languageCode": "en",
+     "rawName": "Test"
+    },
+    {
+     "shortPlayId": 43701,
+     "shortPlayCode": "873056",
+     "shortPlayName": "My CEO Come-Back After Betrayal",
+     "collectNum": 57325,
+     "convertCollectNum": "57.3K",
+     "playNum": 171975,
+     "convertPlayNum": "172K",
+     "summary": "Vivian left home three years ago after her best friend Chloe and boyfriend Ethan betrayed her. She built a brilliant career abroad. When she returns, Chloe and Ethan keep looking down on and provoking her. Finally, Vivian comes back as Summit Group’s new CEO. She lets go of past hurts and chases her bright new future.",
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/28/48bec0ffdaca43f99b19635496658ee7.png",
+     "horizontalCoverId": "https://akamai-static.shorttv.live/images/cover/2026/09/28/8b003bbe76de4a9786632705bf9df9fc.png",
+     "lanShortPlayName": "My CEO Come-Back After Betrayal",
+     "lanShortPlayDescription": "Vivian left home three years ago after her best friend Chloe and boyfriend Ethan betrayed her. She built a brilliant career abroad. When she returns, Chloe and Ethan keep looking down on and provoking her. Finally, Vivian comes back as Summit Group’s new CEO. She lets go of past hurts and chases her bright new future.",
+     "lanShortPlayRecommend": null,
+     "lanCoverId": "https://akamai-static.shorttv.live/images/cover/2026/10/10/5dc5079d60b14ee8bccb77d17b56c016.png",
+     "languageCode": "en",
+     "rawName": "My CEO Come-Back After Betrayal"
+    },
+    {
+     "shortPlayId": 43438,
+     "shortPlayCode": "872793",
+     "shortPlayName": "The Day I Chose His Roommate",
+     "collectNum": 79909,
+     "convertCollectNum": "79.9K",
+     "playNum": 239727,
+     "convertPlayNum": "240K",
+     "summary": "I can see loyalty scores above everyone’s heads. With a score of 31,441, my childhood friend Jace seemed destined to be mine—until he called me clingy and suggested I date his roommate. Then I saw the handsome snow leopard’s score: higher than anyone’s I’d ever seen. For once, I agreed to move on. As Jace’s loyalty plummeted to nine, I stopped chasing him. But now that I’m choosing someone else, why is he suddenly so afraid to let go?",
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/28/ebeffc3eb8184c85bf0837202a52baca.PNG",
+     "horizontalCoverId": "https://akamai-static.shorttv.live/images/cover/2026/09/28/dd239297b3884a5bacb0cc47575ab6e8.PNG",
+     "lanShortPlayName": "The Day I Chose His Roommate",
+     "lanShortPlayDescription": "I can see loyalty scores above everyone’s heads. With a score of 31,441, my childhood friend Jace seemed destined to be mine—until he called me clingy and suggested I date his roommate. Then I saw the handsome snow leopard’s score: higher than anyone’s I’d ever seen. For once, I agreed to move on. As Jace’s loyalty plummeted to nine, I stopped chasing him. But now that I’m choosing someone else, why is he suddenly so afraid to let go?",
+     "lanShortPlayRecommend": null,
+     "lanCoverId": "https://akamai-static.shorttv.live/images/cover/2026/09/28/ebeffc3eb8184c85bf0837202a52baca.PNG",
+     "languageCode": "en",
+     "rawName": "The Day I Chose His Roommate"
+    },
+    {
+     "shortPlayId": 43382,
+     "shortPlayCode": "872737",
+     "shortPlayName": "The Mafia Bride Who Never Showed Up",
+     "collectNum": 47496,
+     "convertCollectNum": "47.5K",
+     "playNum": 142488,
+     "convertPlayNum": "142K",
+     "summary": "Mafia heiress Nora, always second to her cousin Selena, finally snaps. Adrian forgets her allergy, her gifts, her existence—yet remembers everything about Selena. Done being invisible, Nora accepts Julian Vale, a stronger heir who keeps every promise Adrian broke. Adrian learns too late: the bride never showed up—she chose her own life instead.",
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2026/09/27/c579155a2e284630afcc5732f79aa3e3.png",
+     "horizontalCoverId": "https://akamai-static.shorttv.live/images/cover/2026/09/27/0c571a1536a048aea50e846cac710a52.png",
+     "lanShortPlayName": "The Mafia Bride Who Never Showed Up",
+     "lanShortPlayDescription": "Mafia heiress Nora, always second to her cousin Selena, finally snaps. Adrian forgets her allergy, her gifts, her existence—yet remembers everything about Selena. Done being invisible, Nora accepts Julian Vale, a stronger heir who keeps every promise Adrian broke. Adrian learns too late: the bride never showed up—she chose her own life instead.",
+     "lanShortPlayRecommend": null,
+     "lanCoverId": "https://akamai-static.shorttv.live/images/cover/2026/09/27/c579155a2e284630afcc5732f79aa3e3.png",
+     "languageCode": "en",
+     "rawName": "The Mafia Bride Who Never Showed Up"
+    }
+   ],
+   "total": 1027
+  },
+  "msg": ""
+ },
+ "search": {
+  "code": 0,
+  "data": {
+   "pageSize": 10,
+   "pageNum": 1,
+   "data": [
+    {
+     "shortPlayCode": 813515,
+     "shortPlayContentRatingResponse": null,
+     "id": "11355_en",
+     "shortPlayName": "Unfinished Love",
+     "rawName": "Unfinished Love",
+     "titleHighlight": "Unfinished <em>Love</em>",
+     "score": 123.061966,
+     "shortPlayId": 11355,
+     "recommendContent": null,
+     "summary": "Jane loses her place in the family due to her sister Clara's betrayal and suffers abuse from her dad. Torn between Jason and Ethan, she endures betrayal, revenge, marital struggles, and a tragic car accident. In the end, Jane marries Ethan, but Jason's regret comes too late. Meanwhile, Clara's jealousy drives her to continue her malicious deeds. The story ends in tragedy with a hint of redemption, leaving the future uncertain.",
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2025/09/19/3de5d6c206cb4d6e86f93b831812814b.jpg?auth_key=1792696944-0-0-bcb8b9cc7ab840a41b203b12896bc6b6&process=mediagate",
+     "languageCode": null,
+     "sort": null,
+     "collectNum": 46634,
+     "upack": "{\"source\":0,\"scene_id\":12}",
+     "playNum": 139902,
+     "labelList": [
+      {
+       "id": 873,
+       "labelName": "Elite Families",
+       "rankingId": null
+      }
+     ]
+    },
+    {
+     "shortPlayCode": 842802,
+     "shortPlayContentRatingResponse": null,
+     "id": "13564_en",
+     "shortPlayName": "Perfect Love ",
+     "rawName": "Perfect Love ",
+     "titleHighlight": "Perfect <em>Love</em> ",
+     "score": 123.061966,
+     "shortPlayId": 13564,
+     "recommendContent": null,
+     "summary": "Yujin, a café owner, decides to create her ideal man by designing a custom AI boyfriend, ‘Jay.’ One day, she meets the real-life version of her AI creation, sparking a comedic love story.",
+     "coverId": "https://akamai-static.shorttv.live/images/cover/2025/12/11/c52b753d324a4553bc9e84a02af37c00.jpg?auth_key=1792696944-0-0-fda472ee4746fae290e6ad21e260e4c3&process=mediagate",
+     "languageCode": null,
+     "sort": null,
+     "collectNum": 79197,
+     "upack": "{\"source\":0,\"scene_id\":12}",
+     "playNum": 237591,
+     "labelList": [
+      {
+       "id": 705,
+       "labelName": "Youth",
+       "rankingId": null
+      }
+     ]
+    }
+   ],
+   "total": 934
+  },
+  "msg": ""
+ }
+}
