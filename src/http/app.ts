@@ -32,7 +32,7 @@ export function createApp(config: Config): Hono {
   const platformService = new PlatformService();
   const streamProxyService = new StreamProxyService();
   const subtitleService = new SubtitleService();
-  const genreService = new GenreService(browseService);
+  const genreService = new GenreService(config);
 
   // Inisialisasi Controller Layer
   const controllers = {

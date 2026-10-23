@@ -141,6 +141,13 @@
         <div class="platforms-header">
           <h1 class="platforms-title" data-i18n="genreTitle">Koleksi Genre</h1>
           <p class="platforms-subtitle" data-i18n="genreSubtitle">Temukan drama pendek favoritmu berdasarkan alur dan tema cerita.</p>
+          <div class="genres-controls">
+            <input type="text" class="search-input genre-search-input" id="genreSearchInput" data-i18n-placeholder="genreSearchPlaceholder" placeholder="Cari genre..." autocomplete="off">
+            <select class="sort-select" id="genreCardSortSelect">
+              <option value="popular" data-i18n="sortPopular">🔥 Terpopuler</option>
+              <option value="az" data-i18n="sortAZ">🔤 Judul (A — Z)</option>
+            </select>
+          </div>
         </div>
         <div class="genres-grid" id="genresGrid"></div>
         <div id="genreDramasContainer" style="margin-top: 36px; display: none;">

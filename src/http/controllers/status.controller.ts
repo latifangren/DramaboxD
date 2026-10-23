@@ -17,7 +17,7 @@ export class StatusController {
     return c.json({
       name: "DramaboxD",
       status: "ok",
-      version: "0.13.0",
+      version: "0.14.0",
       lanIps,
       providers: IMPLEMENTED,
       languages: ["id", "en"],

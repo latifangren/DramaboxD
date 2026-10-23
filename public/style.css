@@ -427,6 +427,22 @@ body {
   margin-bottom: 6px;
   color: #fff;
 }
+.genre-card-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: #E50914;
+  margin-bottom: 6px;
+}
+.genres-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.genre-search-input {
+  max-width: 280px;
+}
 .genre-card-desc {
   font-size: 12px;
   color: var(--text-muted);

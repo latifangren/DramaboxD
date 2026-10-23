@@ -8,7 +8,7 @@ Scrape drama pendek Cina (dracin) dari berbagai provider dan hasilkan **playlist
 https://.../vod-112094/.../...-sd.m3u8
 ```
 
-## Status (v0.13.0)
+## Status (v0.14.0)
 
 - ✅ Kerangka provider seragam pola **SekaiDrama** (Sansekai/SekaiDrama): satu interface untuk semua provider.
 - ✅ Provider **DramaBox** — adapter API upstream terkonfigurasi.
@@ -24,7 +24,8 @@ https://.../vod-112094/.../...-sd.m3u8
 - ✅ Provider **GoodShort** — jalur **web resmi** (www.goodshort.com): API same-origin `/hwycreels/*` warisan backend GoodNovel (JSON polos; bahasa katalog via Accept-Language, tiap edisi bahasa = bookId sendiri). Episode gratis membawa `m3u8Path` (HLS bertanda tangan) + `playTime` terverifikasi akurat sebagai durasi; episode berbayar tidak diberi field itu oleh server. **Live terverifikasi**: scrape 64 episode → 9/64 tertulis (~2,4 dtk), 55 terkunci dihormati. Detail: `docs/teardown-goodshort-web.md`.
 - ✅ **Bahasa terpadu ID/EN (v0.13.0)** — satu saklar bahasa di WebUI menggerakkan string UI, bahasa katalog/metadata per-request untuk provider yang mendukungnya secara bawaan (ReelShort, PineDrama, NetShort, ShortMax, GoodShort — terverifikasi live: katalog Indonesia ShortMax/GoodShort adalah edisi asli platform, bukan hasil terjemahan), dan default subtitle player. Platform yang katalognya tetap ditandai jujur di halaman Platform (badge 🌐 "Ikut bahasa"). Subtitle player kini native-first: subtitle bawaan provider (sidecar) dan track tertanam HLS otomatis dipilih bila cocok dengan bahasa UI; terjemahan mesin hanya lewat opsi manual di menu subtitle.
 - ✅ **Kontrol player diperkaya (v0.13.0)** — volume + mute (tersimpan sebagai preferensi), Picture-in-Picture, dan menu kualitas HLS (Otomatis / level rendisi manual dari `hls.levels`); menu hanya tampil bila stream punya lebih dari satu rendisi. Tanpa sistem kunci buatan: episode hanya tidak terputar bila platform sumber sendiri menahannya.
-- ✅ 68/68 test lolos, typecheck bersih (`npm test`, `npm run typecheck`).
+- ✅ **Genre diperkaya (v0.14.0)** — taksonomi 10 → 25 genre dwibahasa; pencocokan berlapis: tag bawaan provider dipetakan ke genre lewat tabel alias (dipanen live dari FreeReels/ReelShort/NetShort/DrakorKu dkk.), kata kunci judul/sinopsis jadi fallback; pool genre kini dari latest+trending **semua** provider aktif (sebelumnya hanya pool browse) dengan cache 10 menit per bahasa; `/api/genres` menyertakan hitungan per genre; halaman Genre menampilkan hitungan + pencarian genre + urutan Terpopuler/A–Z.
+- ✅ 73/73 test lolos, typecheck bersih (`npm test`, `npm run typecheck`).
 - ⚠️ DramaBox: API publik Sansekai (`api.sansekai.my.id`) menolak request dari IP VM pengembangan dengan HTTP 403 (22 Okt 2026). Adapter tetap bisa diarahkan ke base lain (mirror/self-host) lewat `DRAMABOX_API_BASE`. Pipeline penuh terverifikasi lewat mode `mock`.
 - ⏭️ Roadmap provider: habis — 10 provider aktif; LokLok diparkir (APK terproteksi DPT-Shell + Dex2C-Pro).
 

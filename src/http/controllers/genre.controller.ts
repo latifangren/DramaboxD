@@ -5,8 +5,8 @@ import { langParam } from "../lang.js";
 export class GenreController {
   constructor(private readonly genreService: GenreService) {}
 
-  getAll(c: Context) {
-    const genres = this.genreService.getAllGenres();
+  async getAll(c: Context) {
+    const genres = await this.genreService.getGenresWithCounts(langParam(c));
     return c.json({
       total: genres.length,
       genres,

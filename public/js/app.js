@@ -13,6 +13,18 @@ let currentModalDrama = null;
 let currentModalEpisodes = [];
 let allPlatformsCache = [];
 let allGenresCache = [];
+let allGenresCacheLang = null;
+
+// Cache genre (termasuk hitungan per bahasa) — dimuat ulang bila bahasa berubah
+async function ensureGenresCache() {
+  const lang = getLanguage();
+  if (allGenresCache.length === 0 || allGenresCacheLang !== lang) {
+    const res = await Api.getGenres();
+    allGenresCache = res.genres || [];
+    allGenresCacheLang = lang;
+  }
+  return allGenresCache;
+}
 let browseDataCache = null;
 let selectedHomeGenre = "all";
 let currentGenreDramas = [];
@@ -53,6 +65,8 @@ const genreDramasContainer = document.getElementById("genreDramasContainer");
 const genreDramasGrid = document.getElementById("genreDramasGrid");
 const selectedGenreTitle = document.getElementById("selectedGenreTitle");
 const genreSortSelect = document.getElementById("genreSortSelect");
+const genreSearchInput = document.getElementById("genreSearchInput");
+const genreCardSortSelect = document.getElementById("genreCardSortSelect");
 
 const searchResultsGrid = document.getElementById("searchResultsGrid");
 const searchResultTitle = document.getElementById("searchResultTitle");
@@ -345,10 +359,7 @@ function renderCatalogRows(rows) {
 async function renderHomeGenreFilterBar() {
   if (!homeGenreFilterBar) return;
   try {
-    if (allGenresCache.length === 0) {
-      const res = await Api.getGenres();
-      allGenresCache = res.genres || [];
-    }
+    await ensureGenresCache();
 
     homeGenreFilterBar.innerHTML = "";
 
@@ -428,30 +439,55 @@ async function filterHomeCatalogByGenre(genreId) {
 }
 
 // 8. Dedicated Genre View
+function renderGenreCards() {
+  if (!genresGrid) return;
+  const isEn = getLanguage() === "en";
+  const query = (genreSearchInput?.value || "").trim().toLowerCase();
+  const sortMode = genreCardSortSelect?.value || "popular";
+
+  const list = allGenresCache
+    .filter((genre) => {
+      if (!query) return true;
+      return (
+        (genre.nameId || "").toLowerCase().includes(query) ||
+        (genre.nameEn || "").toLowerCase().includes(query)
+      );
+    })
+    .sort((a, b) => {
+      if (sortMode === "az") {
+        return (isEn ? a.nameEn : a.nameId).localeCompare(isEn ? b.nameEn : b.nameId);
+      }
+      return (b.count ?? 0) - (a.count ?? 0);
+    });
+
+  genresGrid.innerHTML = "";
+  if (list.length === 0) {
+    genresGrid.innerHTML = `<div class="loader">${t("genreNotFound")}</div>`;
+    return;
+  }
+
+  list.forEach((genre) => {
+    const card = document.createElement("div");
+    card.className = "genre-card";
+    card.onclick = () => selectGenreInGenreView(genre);
+
+    card.innerHTML = `
+      <div class="genre-card-icon">${genre.icon}</div>
+      <div class="genre-card-name">${isEn ? genre.nameEn : genre.nameId}</div>
+      <div class="genre-card-count">${(genre.count ?? 0).toLocaleString()} drama</div>
+      <div class="genre-card-desc">${genre.description}</div>
+    `;
+    genresGrid.appendChild(card);
+  });
+}
+
 async function loadGenresView() {
   try {
-    if (allGenresCache.length === 0) {
-      const res = await Api.getGenres();
-      allGenresCache = res.genres || [];
-    }
-
-    genresGrid.innerHTML = "";
+    await ensureGenresCache();
     if (genreDramasContainer) genreDramasContainer.style.display = "none";
-
-    const isEn = getLanguage() === "en";
-
-    allGenresCache.forEach((genre) => {
-      const card = document.createElement("div");
-      card.className = "genre-card";
-      card.onclick = () => selectGenreInGenreView(genre);
-
-      card.innerHTML = `
-        <div class="genre-card-icon">${genre.icon}</div>
-        <div class="genre-card-name">${isEn ? genre.nameEn : genre.nameId}</div>
-        <div class="genre-card-desc">${genre.description}</div>
-      `;
-      genresGrid.appendChild(card);
-    });
+    if (genreSearchInput) genreSearchInput.oninput = () => renderGenreCards();
+    if (genreCardSortSelect) genreCardSortSelect.onchange = () => renderGenreCards();
+    renderGenreCards();
   } catch (err) {
     genresGrid.innerHTML = `<div class="loader">Gagal memuat genre: ${err.message}</div>`;
   }
