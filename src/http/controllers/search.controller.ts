@@ -1,5 +1,6 @@
 import type { Context } from "hono";
 import type { SearchService } from "../../services/search.service.js";
+import { langParam } from "../lang.js";
 
 export class SearchController {
   constructor(private readonly searchService: SearchService) {}
@@ -12,7 +13,7 @@ export class SearchController {
     }
 
     try {
-      const results = await this.searchService.searchProvider(providerParam, q);
+      const results = await this.searchService.searchProvider(providerParam, q, langParam(c));
       return c.json({ provider: providerParam, query: q, results });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
@@ -27,7 +28,7 @@ export class SearchController {
     }
 
     try {
-      const aggregate = await this.searchService.searchGlobal(q);
+      const aggregate = await this.searchService.searchGlobal(q, langParam(c));
       return c.json(aggregate);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
@@ -42,7 +43,7 @@ export class SearchController {
     }
 
     try {
-      const suggestions = await this.searchService.suggest(q);
+      const suggestions = await this.searchService.suggest(q, 6, langParam(c));
       return c.json({ query: q, suggestions });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);

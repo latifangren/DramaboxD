@@ -1,5 +1,5 @@
 import type { Config } from "../infrastructure/config.js";
-import { createProvider } from "../providers/registry.js";
+import { createProvider, type UiLanguage } from "../providers/registry.js";
 import type { DramaProvider, SeriesSummary } from "../types.js";
 
 export interface BrowseRow {
@@ -14,7 +14,7 @@ export interface BrowsePayload {
 }
 
 export class BrowseService {
-  private cache: { data: BrowsePayload; timestamp: number } | undefined;
+  private readonly cache = new Map<string, { data: BrowsePayload; timestamp: number }>();
   private readonly ttlMs: number;
 
   constructor(
@@ -24,14 +24,16 @@ export class BrowseService {
     this.ttlMs = ttlMs;
   }
 
-  private getProvider(name: string): DramaProvider {
-    return createProvider(name, this.config);
+  private getProvider(name: string, language?: UiLanguage): DramaProvider {
+    return createProvider(name, this.config, language);
   }
 
-  async getBrowse(forceRefresh = false): Promise<BrowsePayload> {
+  async getBrowse(forceRefresh = false, language?: UiLanguage): Promise<BrowsePayload> {
     const now = Date.now();
-    if (!forceRefresh && this.cache && now - this.cache.timestamp < this.ttlMs) {
-      return this.cache.data;
+    const cacheKey = language ?? "default";
+    const cached = this.cache.get(cacheKey);
+    if (!forceRefresh && cached && now - cached.timestamp < this.ttlMs) {
+      return cached.data;
     }
 
     const providersToFetch = ["reelshort", "freereels", "dramabox", "melolo", "pinedrama", "mock"];
@@ -40,7 +42,7 @@ export class BrowseService {
     const results = await Promise.allSettled(
       providersToFetch.map(async (name) => {
         try {
-          const p = this.getProvider(name);
+          const p = this.getProvider(name, language);
           const [trending, latest] = await Promise.allSettled([p.trending(), p.latest()]);
           const trendingItems = trending.status === "fulfilled" ? trending.value : [];
           const latestItems = latest.status === "fulfilled" ? latest.value : [];
@@ -92,7 +94,7 @@ export class BrowseService {
       rows,
     };
 
-    this.cache = { data: payload, timestamp: now };
+    this.cache.set(cacheKey, { data: payload, timestamp: now });
     return payload;
   }
 }

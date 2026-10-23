@@ -1,5 +1,6 @@
 import type { SeriesSummary } from "../types.js";
 import type { BrowseService } from "./browse.service.js";
+import type { UiLanguage } from "../providers/registry.js";
 
 export interface GenreInfo {
   id: string;
@@ -107,11 +108,12 @@ export class GenreService {
   async getDramasByGenre(
     genreId: string,
     sortBy: "popular" | "episodes_desc" | "episodes_asc" | "az" | "za" = "popular",
+    language?: UiLanguage,
   ): Promise<Array<SeriesSummary & { provider: string }>> {
     const genre = this.getGenreById(genreId);
     if (!genre) return [];
 
-    const browse = await this.browseService.getBrowse();
+    const browse = await this.browseService.getBrowse(false, language);
     const allItems: Array<SeriesSummary & { provider: string }> = [];
     const seenIds = new Set<string>();
 

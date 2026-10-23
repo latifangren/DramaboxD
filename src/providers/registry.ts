@@ -18,7 +18,22 @@ export const IMPLEMENTED = ["dramabox", "freereels", "melolo", "pinedrama", "dra
 /** Provider berikutnya sesuai roadmap riset (belum diimplementasikan). */
 export const PLANNED = [] as const;
 
-export function createProvider(name: string, config: Config): DramaProvider {
+/**
+ * Provider yang menghormati pilihan bahasa per-request (terverifikasi live
+ * untuk "id" dan "en", 23 Okt 2026): bahasa diteruskan ke mekanisme bawaan
+ * masing-masing platform (edisi katalog / header lokalisasi / parameter
+ * bertanda tangan). Provider lain katalognya tetap apa pun bahasanya.
+ */
+export const LANGUAGE_AWARE_PROVIDERS = ["reelshort", "pinedrama", "netshort", "shortmax", "goodshort"] as const;
+
+export function isLanguageAware(name: string): boolean {
+  return (LANGUAGE_AWARE_PROVIDERS as readonly string[]).includes(name);
+}
+
+/** Bahasa UI yang didukung saklar bahasa (pengaturan terpadu ID/EN). */
+export type UiLanguage = "id" | "en";
+
+export function createProvider(name: string, config: Config, language?: UiLanguage): DramaProvider {
   switch (name) {
     case "dramabox":
       return new DramaBoxProvider({
@@ -45,7 +60,7 @@ export function createProvider(name: string, config: Config): DramaProvider {
         siteBase: config.pinedramaSiteBase,
         timeoutMs: config.timeoutMs,
         delayMs: config.delayMs,
-        language: config.pinedramaLanguage,
+        language: language ?? config.pinedramaLanguage,
       });
     case "drakorku":
       return new DrakorKuProvider({
@@ -59,14 +74,14 @@ export function createProvider(name: string, config: Config): DramaProvider {
         apiBase: config.reelshortApiBase,
         timeoutMs: config.timeoutMs,
         delayMs: config.delayMs,
-        language: config.reelshortLanguage,
+        language: language ?? config.reelshortLanguage,
       });
     case "netshort":
       return new NetShortProvider({
         siteBase: config.netshortSiteBase,
         timeoutMs: config.timeoutMs,
         delayMs: config.delayMs,
-        language: config.netshortLanguage,
+        language: language ?? config.netshortLanguage,
       });
     case "flickreels":
       return new FlickReelsProvider({
@@ -79,14 +94,14 @@ export function createProvider(name: string, config: Config): DramaProvider {
         apiBase: config.shortmaxApiBase,
         timeoutMs: config.timeoutMs,
         delayMs: config.delayMs,
-        language: config.shortmaxLanguage,
+        language: language ?? config.shortmaxLanguage,
       });
     case "goodshort":
       return new GoodShortProvider({
         siteBase: config.goodshortSiteBase,
         timeoutMs: config.timeoutMs,
         delayMs: config.delayMs,
-        language: config.goodshortLanguage,
+        language: language ?? config.goodshortLanguage,
       });
     case "mock":
       return new MockProvider();

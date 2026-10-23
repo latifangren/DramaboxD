@@ -213,6 +213,8 @@
               </div>
 
               <div class="ctrl-group">
+                <button class="ctrl-btn" id="playerMuteBtn" title="Bisukan / Suarakan">🔊</button>
+                <input type="range" class="player-volume-slider" id="playerVolumeSlider" min="0" max="1" step="0.05" value="1" title="Volume">
                 <select class="watch-select" id="playerSpeedSelect" title="Kecepatan">
                   <option value="1.0">1.0x</option>
                   <option value="1.25">1.25x</option>
@@ -220,6 +222,8 @@
                   <option value="2.0">2.0x</option>
                 </select>
                 <select class="watch-select" id="playerSubtitleSelect" title="Subtitle" style="display: none;"></select>
+                <select class="watch-select" id="playerQualitySelect" title="Kualitas" style="display: none;"></select>
+                <button class="ctrl-btn ctrl-btn-text" id="playerPipBtn" title="Picture-in-Picture">PiP</button>
                 <button class="ctrl-btn" id="playerFullscreenBtn" title="Layar Penuh">⛶</button>
               </div>
             </div>

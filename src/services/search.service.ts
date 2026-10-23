@@ -1,5 +1,5 @@
 import type { Config } from "../infrastructure/config.js";
-import { createProvider, IMPLEMENTED } from "../providers/registry.js";
+import { createProvider, IMPLEMENTED, type UiLanguage } from "../providers/registry.js";
 import type { GlobalSearchResult, SeriesSummary } from "../types.js";
 
 export interface GlobalSearchAggregate {
@@ -12,12 +12,12 @@ export interface GlobalSearchAggregate {
 export class SearchService {
   constructor(private readonly config: Config) {}
 
-  async searchProvider(provider: string, query: string): Promise<SeriesSummary[]> {
-    const p = createProvider(provider, this.config);
+  async searchProvider(provider: string, query: string, language?: UiLanguage): Promise<SeriesSummary[]> {
+    const p = createProvider(provider, this.config, language);
     return await p.search(query);
   }
 
-  async searchGlobal(query: string): Promise<GlobalSearchAggregate> {
+  async searchGlobal(query: string, language?: UiLanguage): Promise<GlobalSearchAggregate> {
     const trimmed = query.trim();
     if (!trimmed) {
       return { query, totalResults: 0, perProvider: [], flat: [] };
@@ -26,7 +26,7 @@ export class SearchService {
     // Eksekusi pencarian serentak ke seluruh provider yang aktif
     const searchTasks = IMPLEMENTED.map(async (providerName) => {
       try {
-        const p = createProvider(providerName, this.config);
+        const p = createProvider(providerName, this.config, language);
         const results = await p.search(trimmed);
         return {
           provider: providerName,
@@ -68,7 +68,7 @@ export class SearchService {
     };
   }
 
-  async suggest(query: string, limit = 6): Promise<Array<SeriesSummary & { provider: string }>> {
+  async suggest(query: string, limit = 6, language?: UiLanguage): Promise<Array<SeriesSummary & { provider: string }>> {
     const qLower = query.toLowerCase();
     const candidates: Array<SeriesSummary & { provider: string }> = [];
     const seen = new Set<string>();
@@ -76,7 +76,7 @@ export class SearchService {
     const fastProviders = ["reelshort", "freereels", "mock"];
     const tasks = fastProviders.map(async (name) => {
       try {
-        const p = createProvider(name, this.config);
+        const p = createProvider(name, this.config, language);
         const res = await p.search(query);
         return res.map((item) => ({ ...item, provider: name }));
       } catch {

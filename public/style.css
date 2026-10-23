@@ -1343,6 +1343,12 @@ input:checked + .slider:before {
   background: rgba(255, 255, 255, 0.08);
   color: var(--text-muted);
 }
+.badge-lang {
+  background: rgba(66, 165, 245, 0.15);
+  color: #42A5F5;
+  border: 1px solid rgba(66, 165, 245, 0.3);
+  margin-left: 6px;
+}
 
 .loader {
   padding: 60px 0;
@@ -1391,4 +1397,15 @@ input:checked + .slider:before {
   padding: 4px 10px;
   border-radius: 4px;
   line-height: 1.4;
+}
+
+.player-volume-slider {
+  width: 72px;
+  accent-color: #E50914;
+  cursor: pointer;
+}
+.ctrl-btn-text {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
 }

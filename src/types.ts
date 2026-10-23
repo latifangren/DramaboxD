@@ -54,6 +54,8 @@ export interface PlatformInfo {
   status: "active" | "planned" | "coming_soon";
   icon?: string;
   description?: string;
+  /** true bila platform menghormati saklar bahasa (ID/EN) per-request. */
+  languageAware?: boolean;
 }
 
 export interface GlobalSearchResult {

@@ -1,5 +1,6 @@
 import type { Context } from "hono";
 import type { DramaService } from "../../services/drama.service.js";
+import { langParam } from "../lang.js";
 
 export class DramaController {
   constructor(private readonly dramaService: DramaService) {}
@@ -13,7 +14,7 @@ export class DramaController {
     }
 
     try {
-      const result = await this.dramaService.getDramaDetail(provider, id);
+      const result = await this.dramaService.getDramaDetail(provider, id, langParam(c));
       return c.json(result);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);
@@ -32,7 +33,7 @@ export class DramaController {
     }
 
     try {
-      const result = await this.dramaService.getEpisodeStream(provider, id, epIndex, epId);
+      const result = await this.dramaService.getEpisodeStream(provider, id, epIndex, epId, langParam(c));
       return c.json(result);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : String(err);

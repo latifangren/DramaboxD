@@ -1,6 +1,6 @@
 // DramaboxD Vertical 9:16 Video Player Controller (3-Column Layout Watch Page)
 import { Api } from "./api.js";
-import { t } from "./i18n.js";
+import { getLanguage, t } from "./i18n.js";
 import { Store } from "./store.js";
 
 export class VerticalPlayer {
@@ -21,6 +21,10 @@ export class VerticalPlayer {
     this.seekbarFill = document.getElementById("playerProgressBar");
     this.speedSelect = document.getElementById("playerSpeedSelect");
     this.subtitleSelect = document.getElementById("playerSubtitleSelect");
+    this.muteBtn = document.getElementById("playerMuteBtn");
+    this.volumeSlider = document.getElementById("playerVolumeSlider");
+    this.qualitySelect = document.getElementById("playerQualitySelect");
+    this.pipBtn = document.getElementById("playerPipBtn");
     this.autoplayToggle = document.getElementById("playerAutoplayToggle");
     this.fullscreenBtn = document.getElementById("playerFullscreenBtn");
 
@@ -45,6 +49,11 @@ export class VerticalPlayer {
     this.hls = null;
     this.lastSavedTime = 0;
     this.onBackCallback = null;
+    // Subtitle bawaan provider (sidecar) untuk episode aktif + elemen <track>-nya
+    this.sidecarSubs = [];
+    this.sidecarTrackEls = [];
+    this.translateTrackEl = null;
+    this.autoSubDone = false;
 
     this.initEvents();
   }
@@ -81,6 +90,29 @@ export class VerticalPlayer {
 
     // Layar Penuh
     this.fullscreenBtn?.addEventListener("click", () => this.toggleFullscreen());
+
+    // Volume & bisu (tersimpan sebagai preferensi)
+    this.muteBtn?.addEventListener("click", () => {
+      if (!this.video) return;
+      this.video.muted = !this.video.muted;
+      Store.setPrefs({ muted: this.video.muted });
+    });
+    this.volumeSlider?.addEventListener("input", (e) => {
+      if (!this.video) return;
+      const v = parseFloat(e.target.value);
+      this.video.volume = v;
+      this.video.muted = v === 0;
+      Store.setPrefs({ volume: v, muted: this.video.muted });
+    });
+    this.video?.addEventListener("volumechange", () => this.syncVolumeUi());
+
+    // Picture-in-Picture
+    this.pipBtn?.addEventListener("click", () => this.togglePip());
+
+    // Kualitas HLS (level manual; -1 = otomatis)
+    this.qualitySelect?.addEventListener("change", (e) => {
+      if (this.hls) this.hls.currentLevel = parseInt(e.target.value, 10);
+    });
 
     // Bookmark tombol di watch page
     this.watchBookmarkBtn?.addEventListener("click", () => {
@@ -142,6 +174,58 @@ export class VerticalPlayer {
     const prefs = Store.getPrefs();
     if (this.autoplayToggle) this.autoplayToggle.checked = prefs.autoplay ?? true;
     if (this.speedSelect) this.speedSelect.value = String(prefs.speed || 1.0);
+    if (this.video) {
+      if (typeof prefs.volume === "number") this.video.volume = prefs.volume;
+      if (typeof prefs.muted === "boolean") this.video.muted = prefs.muted;
+      this.syncVolumeUi();
+    }
+    if (this.pipBtn && (!document.pictureInPictureEnabled || this.video?.disablePictureInPicture)) {
+      this.pipBtn.style.display = "none";
+    }
+  }
+
+  syncVolumeUi() {
+    if (!this.video || !this.muteBtn) return;
+    const v = this.video.muted ? 0 : this.video.volume;
+    this.muteBtn.textContent = v === 0 ? "🔇" : v < 0.5 ? "🔉" : "🔊";
+    if (this.volumeSlider) this.volumeSlider.value = String(v);
+  }
+
+  async togglePip() {
+    try {
+      if (document.pictureInPictureElement) {
+        await document.exitPictureInPicture();
+      } else if (this.video) {
+        await this.video.requestPictureInPicture();
+      }
+    } catch {
+      // PiP ditolak browser (mis. belum ada frame video) — abaikan.
+    }
+  }
+
+  /** Isi menu kualitas dari level HLS yang tersedia; sembunyikan bila <= 1. */
+  populateQuality() {
+    if (!this.qualitySelect) return;
+    const levels = this.hls ? this.hls.levels || [] : [];
+    if (levels.length <= 1) {
+      this.qualitySelect.style.display = "none";
+      return;
+    }
+    this.qualitySelect.innerHTML = "";
+    const auto = document.createElement("option");
+    auto.value = "-1";
+    auto.textContent = t("playerQualityAuto");
+    this.qualitySelect.appendChild(auto);
+    levels.forEach((level, idx) => {
+      const opt = document.createElement("option");
+      opt.value = String(idx);
+      const kbps = level.bitrate ? ` (${Math.round(level.bitrate / 1000)} kbps)` : "";
+      opt.textContent = level.height ? `${level.height}p${kbps}` : `Level ${idx + 1}${kbps}`;
+      this.qualitySelect.appendChild(opt);
+    });
+    this.qualitySelect.value = "-1";
+    if (this.hls) this.hls.currentLevel = -1;
+    this.qualitySelect.style.display = "inline-block";
   }
 
   loadDrama(drama, episodes, startIndex = 0) {
@@ -228,6 +312,7 @@ export class VerticalPlayer {
   async playEpisode(index) {
     if (index < 0 || index >= this.currentEpisodes.length) return;
     this.currentIndex = index;
+    this.autoSubDone = false;
     const ep = this.currentEpisodes[index];
     const epNum = typeof ep.index === "number" && ep.index > 0 ? ep.index : index + 1;
 
@@ -281,6 +366,9 @@ export class VerticalPlayer {
 
     const streamSrc = Api.getStreamProxyUrl(rawStreamUrl);
 
+    // Subtitle bawaan provider (sidecar) untuk episode ini, bila ada
+    this.setSidecarSubtitles(ep.subtitles || []);
+
     // Pulihkan saved speed
     const prefs = Store.getPrefs();
     this.video.playbackRate = prefs.speed || 1.0;
@@ -303,6 +391,7 @@ export class VerticalPlayer {
         this.hls.on(window.Hls.Events.MANIFEST_PARSED, () => {
           this.hideLoader();
           this.populateSubtitles();
+          this.populateQuality();
           this.resumePosition();
           this.video.play().catch(() => {});
         });
@@ -338,6 +427,8 @@ export class VerticalPlayer {
         this.hls = null;
       }
       this.video.src = streamSrc;
+      this.populateSubtitles();
+      this.populateQuality();
       this.resumePosition();
       this.video.play().catch(() => {});
     }
@@ -418,39 +509,132 @@ export class VerticalPlayer {
     }
   }
 
-  populateSubtitles() {
-    if (!this.subtitleSelect || !this.hls) return;
-    const tracks = this.hls.subtitleTracks || [];
-    this.subtitleSelect.innerHTML = `<option value="-1">${t("playerSubNone")}</option>`;
+  /**
+   * Pasang subtitle bawaan provider (sidecar VTT) sebagai <track> natif.
+   * Native-first: yang otomatis menyala hanya track yang bahasanya sama
+   * dengan bahasa UI — tidak ada terjemahan otomatis.
+   */
+  setSidecarSubtitles(subs) {
+    this.sidecarSubs = Array.isArray(subs) ? subs.filter((s) => s && s.url) : [];
+    for (const el of this.sidecarTrackEls) el.remove();
+    this.sidecarTrackEls = [];
+    if (this.translateTrackEl) {
+      this.translateTrackEl.remove();
+      this.translateTrackEl = null;
+    }
+    if (!this.video) return;
+    for (const sub of this.sidecarSubs) {
+      const el = document.createElement("track");
+      el.kind = "subtitles";
+      el.label = sub.label || sub.lang || "Subtitle";
+      el.srclang = (sub.lang || "").slice(0, 2) || "und";
+      el.src = Api.getStreamProxyUrl(sub.url);
+      el.track.mode = "hidden";
+      this.video.appendChild(el);
+      this.sidecarTrackEls.push(el);
+    }
+  }
 
-    if (tracks.length === 0) {
+  showSidecarTrack(activeEl) {
+    for (const el of this.sidecarTrackEls) {
+      el.track.mode = el === activeEl ? "showing" : "hidden";
+    }
+    if (this.translateTrackEl && this.translateTrackEl !== activeEl) {
+      this.translateTrackEl.track.mode = "hidden";
+    }
+  }
+
+  populateSubtitles() {
+    if (!this.subtitleSelect) return;
+    const uiLang = getLanguage();
+    const hlsTracks = this.hls ? this.hls.subtitleTracks || [] : [];
+    const hasAny = hlsTracks.length > 0 || this.sidecarSubs.length > 0;
+
+    this.subtitleSelect.innerHTML = `<option value="-1">${t("playerSubNone")}</option>`;
+    if (!hasAny) {
       this.subtitleSelect.style.display = "none";
       return;
     }
-
     this.subtitleSelect.style.display = "inline-block";
-    let autoSelectIdx = -1;
 
-    tracks.forEach((track, idx) => {
+    hlsTracks.forEach((track, idx) => {
       const opt = document.createElement("option");
-      opt.value = String(idx);
-      const label = track.name || track.lang || `Track ${idx + 1}`;
-      opt.textContent = label;
-      if (track.lang === "id" || label.toLowerCase().includes("indonesi")) {
-        autoSelectIdx = idx;
-      }
+      opt.value = `hls:${idx}`;
+      opt.textContent = track.name || track.lang || `Track ${idx + 1}`;
       this.subtitleSelect.appendChild(opt);
     });
 
-    if (autoSelectIdx >= 0) {
-      this.subtitleSelect.value = String(autoSelectIdx);
-      this.hls.subtitleTrack = autoSelectIdx;
+    this.sidecarSubs.forEach((sub, idx) => {
+      const opt = document.createElement("option");
+      opt.value = `side:${idx}`;
+      opt.textContent = sub.label || sub.lang || `Subtitle ${idx + 1}`;
+      this.subtitleSelect.appendChild(opt);
+    });
+
+    if (this.sidecarSubs.length > 0) {
+      const opt = document.createElement("option");
+      opt.value = "translate";
+      opt.textContent = `🌐 ${t("playerSubTranslate")} (${uiLang.toUpperCase()})`;
+      this.subtitleSelect.appendChild(opt);
+    }
+
+    // Pilihan otomatis sekali per episode: utamakan subtitle bawaan yang
+    // bahasanya sama dengan UI, lalu track HLS yang cocok, selain itu mati.
+    if (!this.autoSubDone) {
+      this.autoSubDone = true;
+      const sideIdx = this.sidecarSubs.findIndex(
+        (s) => (s.lang || "").toLowerCase().startsWith(uiLang),
+      );
+      if (sideIdx >= 0) {
+        this.subtitleSelect.value = `side:${sideIdx}`;
+        this.showSidecarTrack(this.sidecarTrackEls[sideIdx]);
+      } else {
+        const langName = uiLang === "id" ? "indonesi" : "english";
+        const hlsIdx = hlsTracks.findIndex(
+          (track) =>
+            (track.lang || "").toLowerCase().startsWith(uiLang) ||
+            (track.name || "").toLowerCase().includes(langName),
+        );
+        if (hlsIdx >= 0 && this.hls) {
+          this.subtitleSelect.value = `hls:${hlsIdx}`;
+          this.hls.subtitleTrack = hlsIdx;
+        }
+      }
     }
 
     this.subtitleSelect.onchange = (e) => {
-      const trackId = parseInt(e.target.value, 10);
-      this.hls.subtitleTrack = trackId;
+      const value = String(e.target.value);
+      if (this.hls) this.hls.subtitleTrack = -1;
+      this.showSidecarTrack(null);
+      if (value.startsWith("hls:") && this.hls) {
+        this.hls.subtitleTrack = parseInt(value.slice(4), 10);
+      } else if (value.startsWith("side:")) {
+        const idx = parseInt(value.slice(5), 10);
+        this.showSidecarTrack(this.sidecarTrackEls[idx]);
+      } else if (value === "translate") {
+        this.showTranslatedSubtitle();
+      }
     };
+  }
+
+  /** Opsi manual: terjemahkan subtitle bawaan terbaik ke bahasa UI. */
+  showTranslatedSubtitle() {
+    const uiLang = getLanguage();
+    const src =
+      this.sidecarSubs.find((s) => (s.lang || "").toLowerCase().startsWith("en")) ||
+      this.sidecarSubs.find((s) => !(s.lang || "").toLowerCase().startsWith(uiLang)) ||
+      this.sidecarSubs[0];
+    if (!src || !this.video) return;
+    if (this.translateTrackEl) this.translateTrackEl.remove();
+    const el = document.createElement("track");
+    el.kind = "subtitles";
+    el.label = `🌐 ${t("playerSubTranslate")}`;
+    el.srclang = uiLang;
+    el.src = Api.getTranslatedSubtitleUrl(src.url, src.lang || "auto", uiLang);
+    this.video.appendChild(el);
+    this.translateTrackEl = el;
+    this.showSidecarTrack(null);
+    el.track.mode = "showing";
   }
 
   toggleFullscreen() {

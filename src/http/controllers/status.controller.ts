@@ -1,6 +1,6 @@
 import os from "node:os";
 import type { Context } from "hono";
-import { IMPLEMENTED } from "../../providers/registry.js";
+import { IMPLEMENTED, LANGUAGE_AWARE_PROVIDERS } from "../../providers/registry.js";
 
 export class StatusController {
   getStatus(c: Context) {
@@ -17,9 +17,11 @@ export class StatusController {
     return c.json({
       name: "DramaboxD",
       status: "ok",
-      version: "0.12.0",
+      version: "0.13.0",
       lanIps,
       providers: IMPLEMENTED,
+      languages: ["id", "en"],
+      languageAwareProviders: LANGUAGE_AWARE_PROVIDERS,
     });
   }
 }

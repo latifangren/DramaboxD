@@ -1,5 +1,6 @@
 import type { Context } from "hono";
 import type { GenreService } from "../../services/genre.service.js";
+import { langParam } from "../lang.js";
 
 export class GenreController {
   constructor(private readonly genreService: GenreService) {}
@@ -24,7 +25,7 @@ export class GenreController {
         return c.json({ error: `Genre '${slug}' tidak ditemukan` }, 404);
       }
       const sortParam = (c.req.query("sort") || "popular") as "popular" | "episodes_desc" | "episodes_asc" | "az" | "za";
-      const dramas = await this.genreService.getDramasByGenre(slug, sortParam);
+      const dramas = await this.genreService.getDramasByGenre(slug, sortParam, langParam(c));
       return c.json({
         genre,
         sortBy: sortParam,

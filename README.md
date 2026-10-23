@@ -8,7 +8,7 @@ Scrape drama pendek Cina (dracin) dari berbagai provider dan hasilkan **playlist
 https://.../vod-112094/.../...-sd.m3u8
 ```
 
-## Status (v0.12.0)
+## Status (v0.13.0)
 
 - ✅ Kerangka provider seragam pola **SekaiDrama** (Sansekai/SekaiDrama): satu interface untuk semua provider.
 - ✅ Provider **DramaBox** — adapter API upstream terkonfigurasi.
@@ -22,7 +22,9 @@ https://.../vod-112094/.../...-sd.m3u8
 - ✅ Provider **FlickReels** — jalur **web** (www.flickreels.net, Nuxt SSR): seluruh data seri + episode dari payload `__NUXT_DATA__` halaman episode; stream dari JSON-LD VideoObject (HLS bertanda tangan). ID seri komposit `slug/playletId` (slug wajib persis, dari href kartu katalog). **Live terverifikasi**: scrape "Daddy's Little Savior" (58 ep) → 9/58 tertulis, 49 terkunci tercatat. Detail: `docs/teardown-flickreels-web.md`.
 - ✅ Provider **ShortMax** — jalur **web resmi** (www.shorttv.live): API `shortweb.shorttv.live/app-api/app` beramplop AES-128-CBC dua arah persis klien web resmi (kunci=IV dari bundle publik; header X-Encrypted + Language-Code wajib). Satu panggilan detail memuat semua episode; stream HLS bertanda tangan (segmen terbuka). **Live terverifikasi**: scrape "Chasing Love" (66 ep) → 7/66 tertulis (~1,5 dtk; `lockBegin` 7), 59 terkunci dihormati. Detail: `docs/teardown-shortmax-web.md`.
 - ✅ Provider **GoodShort** — jalur **web resmi** (www.goodshort.com): API same-origin `/hwycreels/*` warisan backend GoodNovel (JSON polos; bahasa katalog via Accept-Language, tiap edisi bahasa = bookId sendiri). Episode gratis membawa `m3u8Path` (HLS bertanda tangan) + `playTime` terverifikasi akurat sebagai durasi; episode berbayar tidak diberi field itu oleh server. **Live terverifikasi**: scrape 64 episode → 9/64 tertulis (~2,4 dtk), 55 terkunci dihormati. Detail: `docs/teardown-goodshort-web.md`.
-- ✅ 65/65 test lolos, typecheck bersih (`npm test`, `npm run typecheck`).
+- ✅ **Bahasa terpadu ID/EN (v0.13.0)** — satu saklar bahasa di WebUI menggerakkan string UI, bahasa katalog/metadata per-request untuk provider yang mendukungnya secara bawaan (ReelShort, PineDrama, NetShort, ShortMax, GoodShort — terverifikasi live: katalog Indonesia ShortMax/GoodShort adalah edisi asli platform, bukan hasil terjemahan), dan default subtitle player. Platform yang katalognya tetap ditandai jujur di halaman Platform (badge 🌐 "Ikut bahasa"). Subtitle player kini native-first: subtitle bawaan provider (sidecar) dan track tertanam HLS otomatis dipilih bila cocok dengan bahasa UI; terjemahan mesin hanya lewat opsi manual di menu subtitle.
+- ✅ **Kontrol player diperkaya (v0.13.0)** — volume + mute (tersimpan sebagai preferensi), Picture-in-Picture, dan menu kualitas HLS (Otomatis / level rendisi manual dari `hls.levels`); menu hanya tampil bila stream punya lebih dari satu rendisi. Tanpa sistem kunci buatan: episode hanya tidak terputar bila platform sumber sendiri menahannya.
+- ✅ 68/68 test lolos, typecheck bersih (`npm test`, `npm run typecheck`).
 - ⚠️ DramaBox: API publik Sansekai (`api.sansekai.my.id`) menolak request dari IP VM pengembangan dengan HTTP 403 (22 Okt 2026). Adapter tetap bisa diarahkan ke base lain (mirror/self-host) lewat `DRAMABOX_API_BASE`. Pipeline penuh terverifikasi lewat mode `mock`.
 - ⏭️ Roadmap provider: habis — 10 provider aktif; LokLok diparkir (APK terproteksi DPT-Shell + Dex2C-Pro).
 

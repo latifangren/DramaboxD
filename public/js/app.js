@@ -203,6 +203,7 @@ langSwitchBtn.onclick = () => {
   setLanguage(nextLang);
 };
 window.addEventListener("languageChanged", () => {
+  loadHomeBrowse();
   renderContinueWatching();
   renderHomeGenreFilterBar();
   if (currentActiveView === "platforms") loadPlatformsView();
@@ -596,6 +597,7 @@ function renderPlatformGrid(filterType) {
         <div class="platform-name">${p.name}</div>
         <div class="platform-count">${p.dramaCount.toLocaleString()} drama</div>
         <span class="platform-status-badge ${statusClass}">${statusText}</span>
+        ${p.languageAware ? `<span class="platform-status-badge badge-lang" title="${t("platformLangBadge")}">🌐 ${t("platformLangBadge")}</span>` : ""}
       </div>
     `;
     platformsGrid.appendChild(card);

@@ -5,7 +5,7 @@ import { MeloloClient } from "../providers/melolo/client.js";
 import { parseVideoModel } from "../providers/melolo/normalize.js";
 import { PineDramaClient } from "../providers/pinedrama/client.js";
 import { ReelShortClient } from "../providers/reelshort/client.js";
-import { createProvider } from "../providers/registry.js";
+import { createProvider, type UiLanguage } from "../providers/registry.js";
 import type { Episode, SeriesDetail } from "../types.js";
 
 export interface DramaDetailResult {
@@ -26,15 +26,15 @@ export interface SingleEpisodeStreamResult {
 export class DramaService {
   constructor(private readonly config: Config) {}
 
-  async getDramaDetail(provider: string, id: string): Promise<DramaDetailResult> {
-    const p = createProvider(provider, this.config);
+  async getDramaDetail(provider: string, id: string, language?: UiLanguage): Promise<DramaDetailResult> {
+    const p = createProvider(provider, this.config, language);
     const detail = await p.detail(id);
 
     // Mode cepat (Fast-loading for Web UI): Jangan loop puluhan request upfront
     if (provider === "reelshort") {
       const client = new ReelShortClient({
         apiBase: this.config.reelshortApiBase,
-        language: this.config.reelshortLanguage,
+        language: language ?? this.config.reelshortLanguage,
         timeoutMs: this.config.timeoutMs,
       });
       const book = (await client.get("/api/video/book/getBookInfo", { book_id: id })) as {
@@ -153,11 +153,12 @@ export class DramaService {
     seriesId: string,
     index: number,
     epId?: string,
+    language?: UiLanguage,
   ): Promise<SingleEpisodeStreamResult> {
     if (provider === "reelshort") {
       const client = new ReelShortClient({
         apiBase: this.config.reelshortApiBase,
-        language: this.config.reelshortLanguage,
+        language: language ?? this.config.reelshortLanguage,
         timeoutMs: this.config.timeoutMs,
       });
       let targetChapterId = epId;
@@ -277,7 +278,7 @@ export class DramaService {
     }
 
     // Default fallback (mock, drakorku, dramabox)
-    const p = createProvider(provider, this.config);
+    const p = createProvider(provider, this.config, language);
     const all = await p.episodes(seriesId);
     const target = all.find((e) => e.index === index) || all[index - 1];
     return {

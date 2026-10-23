@@ -1,5 +1,5 @@
 import type { PlatformInfo } from "../types.js";
-import { IMPLEMENTED, PLANNED } from "../providers/registry.js";
+import { IMPLEMENTED, PLANNED, isLanguageAware } from "../providers/registry.js";
 
 export class PlatformService {
   /**
@@ -138,7 +138,7 @@ export class PlatformService {
   ];
 
   getAllPlatforms(): PlatformInfo[] {
-    return this.platforms;
+    return this.platforms.map((p) => ({ ...p, languageAware: isLanguageAware(p.id) }));
   }
 
   getPlatform(id: string): PlatformInfo | undefined {
