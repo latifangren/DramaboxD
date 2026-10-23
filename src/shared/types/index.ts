@@ -75,7 +75,7 @@ export interface PlatformInfo {
   displayName: string;
   status: PlatformStatus;
   /** Jalur integrasi: api web, api APK, atau panel. */
-  kind?: "web-api" | "apk-api" | "panel";
+  kind?: "web-api" | "web-ssr" | "apk-api" | "panel";
   /** Jumlah drama yang diketahui; null bila upstream tidak memberi angka katalog. */
   dramaCount: number | null;
   description?: { id: string; en: string };

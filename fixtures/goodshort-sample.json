@@ -1,0 +1,220 @@
+{
+ "detail": {
+  "status": 0,
+  "data": {
+   "book": {
+    "bookId": "31001217415",
+    "bookName": "Casarse con un rico sin querer",
+    "cover": "https://acf.goodshort.com/videobook/202512/cover-s2e7VdidfY.jpg",
+    "introduction": "Chloe Anderson, desesperada por conseguir dinero para salvar un orfanato, terminó casándose con el multimillonario Lucas Davenport, un hombre que detestaba a las mujeres interesadas. Creyendo que Chloe era otra cazafortunas, Lucas ocultó su verdadera identidad para ponerla a prueba. Sin embargo, contra todo pronóstico, empezó a enamorarse perdidamente de ella. El cruel giro del destino fue que la única cosa que Chloe odiaba por sobre todas las cosas... era la mentira.",
+    "chapterCount": 64,
+    "tagsList": [
+     {
+      "id": 517,
+      "name": "Matrimonio",
+      "resourceUrl": "matrimonio-obras-videos"
+     },
+     {
+      "id": 553,
+      "name": "Millonario",
+      "resourceUrl": "millonario-obras-videos"
+     },
+     {
+      "id": 588,
+      "name": "Matrimonio Relámpago",
+      "resourceUrl": "matrimonio-relámpago-obras-videos"
+     },
+     {
+      "id": 522,
+      "name": "Identidad Oculta",
+      "resourceUrl": "identidad-oculta-obras-videos"
+     }
+    ],
+    "genreList": [
+     {
+      "id": 137,
+      "name": "Romance",
+      "resourceUrl": "romance-137-obras"
+     }
+    ],
+    "language": "SPANISH"
+   }
+  }
+ },
+ "chapters": {
+  "status": 0,
+  "data": {
+   "total": 64,
+   "pages": 1,
+   "records": [
+    {
+     "id": 15771093,
+     "chapterName": "001",
+     "price": 0,
+     "playTime": 151,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-8kA8OBxI6Z.jpg",
+     "m3u8Path": "https://v3.goodshort.com/mts/books/415/31001217415/612159/msc9kxaeqf/origin1/axikj9cfkh.m3u8?auth=REDACTED"
+    },
+    {
+     "id": 15771094,
+     "chapterName": "002",
+     "price": 0,
+     "playTime": 78,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-2m4GHUZIoV.jpg",
+     "m3u8Path": "https://v3.goodshort.com/mts/books/415/31001217415/612159/cyptppfvta/origin1/nnr0p40diw.m3u8?auth=REDACTED"
+    },
+    {
+     "id": 15771095,
+     "chapterName": "003",
+     "price": 0,
+     "playTime": 100,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-XC0X9cAscM.jpg",
+     "m3u8Path": "https://v3.goodshort.com/mts/books/415/31001217415/612159/vw5m2nkvhf/origin1/cgxlobutqi.m3u8?auth=REDACTED"
+    },
+    {
+     "id": 15771096,
+     "chapterName": "004",
+     "price": 0,
+     "playTime": 127,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-IfdraRdTn2.jpg",
+     "m3u8Path": "https://v3.goodshort.com/mts/books/415/31001217415/612159/zmjovowf3z/origin1/htjcwokmnf.m3u8?auth=REDACTED"
+    },
+    {
+     "id": 15771097,
+     "chapterName": "005",
+     "price": 0,
+     "playTime": 129,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-Uagvt3km3K.jpg",
+     "m3u8Path": "https://v3.goodshort.com/mts/books/415/31001217415/612159/yl7m3lnyfr/origin1/zwahv9dpcz.m3u8?auth=REDACTED"
+    },
+    {
+     "id": 15771098,
+     "chapterName": "006",
+     "price": 0,
+     "playTime": 137,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-Rma17WN2kc.jpg",
+     "m3u8Path": "https://v3.goodshort.com/mts/books/415/31001217415/612159/dfii6cjfn8/origin1/gsgpte7daj.m3u8?auth=REDACTED"
+    },
+    {
+     "id": 15771099,
+     "chapterName": "007",
+     "price": 0,
+     "playTime": 111,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-LdnbHgC0oK.jpg",
+     "m3u8Path": "https://v3.goodshort.com/mts/books/415/31001217415/612159/dr2qppx8wn/origin1/joecgdwkvr.m3u8?auth=REDACTED"
+    },
+    {
+     "id": 15771100,
+     "chapterName": "008",
+     "price": 0,
+     "playTime": 83,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-SZvJ4Mtfhq.jpg",
+     "m3u8Path": "https://v3.goodshort.com/mts/books/415/31001217415/612159/srfy5g4rdb/origin1/vx12j8qfs8.m3u8?auth=REDACTED"
+    },
+    {
+     "id": 15771101,
+     "chapterName": "009",
+     "price": 0,
+     "playTime": 91,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-vV5xE2erPa.jpg",
+     "m3u8Path": "https://v3.goodshort.com/mts/books/415/31001217415/612159/ajt4lyk2h8/origin1/gvotd4m2a3.m3u8?auth=REDACTED"
+    },
+    {
+     "id": 15771102,
+     "chapterName": "010",
+     "price": 44,
+     "playTime": 64,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-f1q97r8LNV.jpg"
+    },
+    {
+     "id": 15771103,
+     "chapterName": "011",
+     "price": 68,
+     "playTime": 102,
+     "image": "https://acf.goodshort.com/videobook/31001217415/202512/cover-AWJTcSqBSg.jpg"
+    }
+   ]
+  }
+ },
+ "search": {
+  "status": 0,
+  "data": {
+   "page": {
+    "total": 500,
+    "records": [
+     {
+      "bookId": "31001185370",
+      "bookName": "Love Was Never Part of the Deal",
+      "cover": "https://acf.goodshort.com/videobook/202511/cover-B0YIGbbEZU.jpg",
+      "chapterCount": 64
+     },
+     {
+      "bookId": "31001166345",
+      "bookName": "Where Love Fell Asleep",
+      "cover": "https://acf.goodshort.com/videobook/202510/cover-WTB4df7iKT.jpg",
+      "chapterCount": 72
+     },
+     {
+      "bookId": "31001103419",
+      "bookName": "Jasmine Dreams and Iron Will",
+      "cover": "https://acf.goodshort.com/videobook/202508/cover-TI8O1tsAns.jpg",
+      "chapterCount": 60
+     }
+    ]
+   }
+  }
+ },
+ "home": {
+  "status": 0,
+  "data": {
+   "pageColumns": [
+    {
+     "name": "Most Trending",
+     "items": [
+      {
+       "action": "31001814981",
+       "bookName": "Guardian to Groom",
+       "name": "Guardian to Groom",
+       "cover": "https://acf.goodshort.com/videobook/202609/cover-B1ie41POj9.jpg"
+      },
+      {
+       "action": "31001792509",
+       "bookName": "Swapped to Be the Don's Queen",
+       "name": "Swapped to Be the Don's Queen",
+       "cover": "https://acf.goodshort.com/videobook/202609/cover-8CMZsF8YxZ.jpg"
+      },
+      {
+       "action": "31001840388",
+       "bookName": "The Lost Dragon Queen",
+       "name": "The Lost Dragon Queen",
+       "cover": "https://acf.goodshort.com/videobook/202610/cover-7nJFiYoFMp.jpg"
+      }
+     ]
+    },
+    {
+     "name": "Hot List",
+     "items": [
+      {
+       "action": "31001045490",
+       "bookName": "Kidnapped by the Mafia",
+       "name": "Kidnapped by the Mafia",
+       "cover": "https://acf.goodshort.com/videobook/202506/cover-mdadfZL4eM.jpg"
+      },
+      {
+       "action": "31000865838",
+       "bookName": "The Lady Boss is Done Pretending",
+       "name": "The Lady Boss is Done Pretending",
+       "cover": "https://acf.goodshort.com/videobook/202411/cover-jUMdjChIFX.jpg"
+      },
+      {
+       "action": "31000721411",
+       "bookName": "Bound to the Bastard Billionaire",
+       "name": "Bound to the Bastard Billionaire",
+       "cover": "https://acf.goodshort.com/videobook/202403/cover-fQ5YHZwcvR.jpg"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

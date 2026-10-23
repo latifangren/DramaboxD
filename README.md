@@ -22,8 +22,11 @@ Fitur: billboard + baris katalog per platform, pencarian global semua platform s
 
 Endpoint utama: `/api/status`, `/api/platforms`, `/api/browse`, `/api/search`, `/api/search/global`, `/api/drama/:provider/:id`, `/api/stream`, `/api/subtitles`.
 
-## Status (v0.8.0)
+## Status (v0.11.0)
 
+- ✅ Provider **FlickReels** — jalur **web** (flickreels.net, Nuxt SSR): semua data dari payload `__NUXT_DATA__` (format devalue) di HTML + JSON-LD VideoObject per episode (m3u8 bertanda tangan, terverifikasi playlist + segmen TS). ID seri = `<slug>/<playletId>` (slug URL wajib benar). **Live terverifikasi**: scrape "Daddy's Little Savior" → 9/58 episode tertulis (gratis s/d ep 9; `start_pay_num` 10; 49 terkunci dihormati). Detail: `docs/teardown-flickreels-web.md`.
+- ✅ Provider **GoodShort** — jalur **web resmi** (www.goodshort.com; intel lama "APK saja" gugur): API same-origin `/hwycreels/*` warisan backend GoodNovel (POST JSON polos, amplop {status:0, data}; bahasa katalog via Accept-Language, tiap edisi bahasa = bookId sendiri). Episode gratis membawa `m3u8Path` (HLS bertanda tangan v3.goodshort.com) + `playTime` yang terverifikasi akurat sebagai durasi; episode berbayar tidak diberi field itu oleh server. **Live terverifikasi**: scrape 64 episode → 9/64 tertulis (~2,4 dtk), 55 terkunci dihormati; search "love" total 500. Roadmap provider riset kini HABIS (PLANNED kosong) — tersisa hanya LokLok yang diparkir atas keputusan user. Detail: `docs/teardown-goodshort-web.md`.
+- ✅ Provider **ShortMax** — jalur **web resmi** (www.shorttv.live): API `shortweb.shorttv.live/app-api/app` beramplop AES-128-CBC dua arah persis klien web resmi (kunci=IV dari bundle publik; header X-Encrypted + Language-Code wajib). Satu panggilan detail memuat semua episode; stream HLS bertanda tangan (segmen terbuka). **Live terverifikasi**: scrape "Chasing Love" (66 ep) → 7/66 tertulis (~1,5 dtk; `lockBegin` 7), 59 terkunci dihormati. Jalur API komunitas SAPI sudah mati (host tak menjawab) dan mirror Sansekai 403 dari jaringan ini — keduanya tidak dipakai; detail: `docs/teardown-shortmax-web.md`.
 - ✅ Restruktur total ke arsitektur DramaboxD (branch `dev-muse`): backend berlapis `src/{http,services,integrations,infrastructure,shared}`, frontend SPA modular di `public/{css,js}`, nama paket `dramaboxd`.
 - ✅ Provider **NetShort** — jalur **web** (netshort.com): API `/prod-web-api` beramplop enkripsi AES-256-ECB + RSA persis klien web resmi (kunci sesi konstan + pasangan kunci RSA dari bundle publik situs; tanpa amplop server membalas 500). Stream = MP4 bertanda tangan (`playVoucher`, cfcdn.netshort.com). **Live terverifikasi**: search "queen" 3.786 hasil; scrape "Back to the '90s: A Pop Queen's Comeback" → 7/30 episode tertulis (23 terkunci dihormati & tercatat). Detail: `docs/teardown-netshort-web.md`. Catatan: jumlah episode gratis bervariasi per judul; durasi upstream berupa string desimal.
 - ✅ Kerangka provider seragam pola **SekaiDrama** (Sansekai/SekaiDrama): satu interface untuk semua provider.
@@ -53,6 +56,9 @@ node dist/cli.js scrape my-husband-murdered-me --provider pinedrama --out output
 node dist/cli.js scrape 3730 --provider drakorku --out output  # DrakorKu (ID = cid kategori)
 node dist/cli.js scrape 6a5191d8fa9f9f7a09081789 --provider reelshort --out output  # ReelShort web (ID = book_id hex)
 node dist/cli.js scrape 2113091819067854850 --provider netshort --out output  # NetShort web (ID = shortPlayId numerik)
+node dist/cli.js scrape daddys-little-savior/14288 --provider flickreels --out output  # FlickReels web (ID = slug/playletId)
+node dist/cli.js scrape 36517 --provider shortmax --out output  # ShortMax web (ID = shortPlayId numerik)
+node dist/cli.js scrape 31001217415 --provider goodshort --out output  # GoodShort web (ID = bookId numerik)
 node dist/cli.js search "pewaris"                      # DramaBox (live, butuh upstream yang bisa diakses)
 node dist/cli.js scrape <bookId> --out output          # -> output/<slug-judul>.m3u
 

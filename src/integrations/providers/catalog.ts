@@ -72,6 +72,39 @@ export const ACTIVE_PLATFORMS: PlatformInfo[] = [
     },
   },
   {
+    slug: "flickreels",
+    displayName: "FlickReels",
+    status: "active",
+    kind: "web-ssr",
+    dramaCount: null,
+    description: {
+      id: "Jalur web flickreels.net (Nuxt SSR) — data dari payload halaman, stream HLS bertanda tangan per episode, episode terkunci dihormati.",
+      en: "flickreels.net web route (Nuxt SSR) — data from page payloads, signed HLS stream per episode, locked episodes respected.",
+    },
+  },
+  {
+    slug: "shortmax",
+    displayName: "ShortMax",
+    status: "active",
+    kind: "web-api",
+    dramaCount: null,
+    description: {
+      id: "Jalur web resmi shorttv.live (API beramplop AES-128-CBC persis klien resmi) — HLS bertanda tangan per episode, episode terkunci dihormati.",
+      en: "Official shorttv.live web route (AES-128-CBC envelope like the official client) — signed HLS per episode, locked episodes respected.",
+    },
+  },
+  {
+    slug: "goodshort",
+    displayName: "GoodShort",
+    status: "active",
+    kind: "web-api",
+    dramaCount: null,
+    description: {
+      id: "Jalur web resmi goodshort.com (API /hwycreels) — HLS bertanda tangan + durasi akurat per episode, episode berbayar dihormati.",
+      en: "Official goodshort.com web route (/hwycreels API) — signed HLS plus accurate per-episode durations, paid episodes respected.",
+    },
+  },
+  {
     slug: "dramabox",
     displayName: "DramaBox",
     status: "active",
@@ -86,8 +119,5 @@ export const ACTIVE_PLATFORMS: PlatformInfo[] = [
 
 /** Roadmap riset (lihat docs/) — ditampilkan sebagai "segera hadir". */
 export const PLANNED_PLATFORMS: PlatformInfo[] = [
-  { slug: "flickreels", displayName: "FlickReels", status: "coming-soon", dramaCount: null },
-  { slug: "shortmax", displayName: "ShortMax", status: "coming-soon", dramaCount: null },
-  { slug: "goodshort", displayName: "GoodShort", status: "coming-soon", dramaCount: null },
   { slug: "loklok", displayName: "LokLok", status: "coming-soon", dramaCount: null },
 ];

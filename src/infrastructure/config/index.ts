@@ -19,6 +19,11 @@ export interface Config {
   reelshortLanguage?: string;
   netshortSiteBase: string;
   netshortLanguage?: string;
+  flickreelsSiteBase: string;
+  shortmaxApiBase: string;
+  shortmaxLanguage?: string;
+  goodshortSiteBase: string;
+  goodshortLanguage?: string;
   delayMs: number;
   timeoutMs: number;
   outDir: string;
@@ -54,6 +59,11 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     reelshortLanguage: env.REELSHORT_LANGUAGE,
     netshortSiteBase: (env.NETSHORT_SITE_BASE ?? "https://netshort.com").replace(/\/+$/, ""),
     netshortLanguage: env.NETSHORT_LANGUAGE,
+    flickreelsSiteBase: (env.FLICKREELS_SITE_BASE ?? "https://www.flickreels.net").replace(/\/+$/, ""),
+    shortmaxApiBase: (env.SHORTMAX_API_BASE ?? "https://shortweb.shorttv.live/app-api/app").replace(/\/+$/, ""),
+    shortmaxLanguage: env.SHORTMAX_LANGUAGE,
+    goodshortSiteBase: (env.GOODSHORT_SITE_BASE ?? "https://www.goodshort.com").replace(/\/+$/, ""),
+    goodshortLanguage: env.GOODSHORT_LANGUAGE,
     delayMs: intFromEnv(env.DRACIN_DELAY_MS, 500),
     timeoutMs: intFromEnv(env.DRACIN_TIMEOUT_MS, 30_000),
     outDir: env.DRACIN_OUT_DIR ?? "output",
